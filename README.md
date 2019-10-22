@@ -8,7 +8,7 @@ Deploy a Collection to Ansible Galaxy.
 
 **Required** Ansible Galaxy API key.
 
-This should be stored in a Secret on Github. See [Creating and Using Secrets Encrypted Variables](https://help.github.com/en/github/automating-your-workflow-with-github-actions/virtual-environments-for-github-actions#creating-and-using-secrets-encrypted-variables).
+This should be stored in a Secret on GitHub. See [Creating and Using Secrets Encrypted Variables](https://help.github.com/en/github/automating-your-workflow-with-github-actions/virtual-environments-for-github-actions#creating-and-using-secrets-encrypted-variables).
 
 ### galaxy_config_file
 
@@ -19,7 +19,7 @@ A collection must have a galaxy.yml file that contains the necessary information
 ## Example Usage
 
 ```yaml
-uses: artis3n/ansible_galaxy_collection@v1.0.0
+uses: artis3n/ansible_galaxy_collection@v1.0.1
 with:
   api_key: 'df328fawrfr32iuaw'
 ```

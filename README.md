@@ -19,7 +19,7 @@ A collection must have a galaxy.yml file that contains the necessary information
 ## Example Usage
 
 ```yaml
-uses: artis3n/ansible_galaxy_collection@v1.0.0
+uses: artis3n/ansible_galaxy_collection@v1.0.2
 with:
   api_key: 'df328fawrfr32iuaw'
 ```

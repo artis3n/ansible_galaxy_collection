@@ -20,7 +20,6 @@ A collection must have a galaxy.yml file that contains the necessary information
 
 ```yaml
 uses: artis3n/ansible_galaxy_collection@v1.0.2
-
 with:
   api_key: 'df328fawrfr32iuaw'
 ```

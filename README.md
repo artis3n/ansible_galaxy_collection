@@ -42,7 +42,8 @@ A collection must have a galaxy.yml file that contains the necessary information
     # Remove '--pre' once Ansible 2.9 is released.
     pip install --pre ansible
 
-uses: artis3n/ansible_galaxy_collection@v1.0.4
-with:
-  api_key: 'df328fawrfr32iuaw'
+- name: Build and Deploy Collection
+  uses: artis3n/ansible_galaxy_collection@v1.0.4
+  with:
+    api_key: 'df328fawrfr32iuaw'
 ```

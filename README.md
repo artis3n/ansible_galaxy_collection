@@ -30,6 +30,18 @@ A collection must have a galaxy.yml file that contains the necessary information
 ## Example Usage
 
 ```yaml
+- name: Set up Python 3
+  uses: actions/setup-python@v1
+  with:
+    python-version: 3.6
+
+- name: Install dependencies
+  run: |
+    python -m pip install --upgrade pip
+    # We need the pre-release version of Ansible to use the 'collection' action in ansible-galaxy.
+    # Remove '--pre' once Ansible 2.9 is released.
+    pip install --pre ansible
+
 uses: artis3n/ansible_galaxy_collection@v1.0.4
 with:
   api_key: 'df328fawrfr32iuaw'

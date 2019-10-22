@@ -43,7 +43,7 @@ A collection must have a galaxy.yml file that contains the necessary information
     pip install --pre ansible
 
 - name: Build and Deploy Collection
-  uses: artis3n/ansible_galaxy_collection@v1.0.4
+  uses: artis3n/ansible_galaxy_collection@v1.0.5
   with:
     api_key: 'df328fawrfr32iuaw'
 ```

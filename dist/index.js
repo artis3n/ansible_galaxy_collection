@@ -1188,7 +1188,7 @@ const fs = __webpack_require__(747);
 
 try {
     const apiKey = core.getInput('api_key');
-    const galaxy_config_file = core.getInput('galaxy_config_file');
+    const galaxy_config_file = core.getInput('galaxy_config_file') || 'galaxy.yaml';
     const galaxy_config = yaml.safeLoad(fs.readFileSync(galaxy_config_file, 'utf8'));
 
     const namespace = galaxy_config.namespace;

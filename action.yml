@@ -11,7 +11,7 @@ inputs:
     default: 'galaxy.yml'
 runs:
   using: 'node12'
-  image: 'index.js'
+  image: 'dist/index.js'
 branding:
   icon: 'activity'
   color: 'gray-dark'

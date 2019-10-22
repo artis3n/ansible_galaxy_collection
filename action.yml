@@ -5,7 +5,7 @@ author: 'Artis3n <dev@quantummadness.com>'
 inputs:
   api_key:
     description: |
-      Ansible Galaxy API key. This should be stored in a Secret on Github and passed in like ${{ secrets.GALAXY_API_KEY }}.
+      Ansible Galaxy API key. This should be stored in a Secret on Github.
 
       See https://help.github.com/en/github/automating-your-workflow-with-github-actions/virtual-environments-for-github-actions#creating-and-using-secrets-encrypted-variables.
     required: true

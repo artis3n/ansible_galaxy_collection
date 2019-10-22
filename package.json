@@ -1,0 +1,28 @@
+{
+  "name": "ansible_galaxy_collection",
+  "version": "1.0.0",
+  "description": "Deploy a collection to Ansible Galaxy",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "ncc build index.js -o dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artis3n/ansible_galaxy_collection.git"
+  },
+  "author": "Artis3n <dev@quantummadness.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/artis3n/ansible_galaxy_collection/issues"
+  },
+  "homepage": "https://github.com/artis3n/ansible_galaxy_collection#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.0",
+    "@actions/exec": "^1.0.1",
+    "js-yaml": "^3.13.1"
+  },
+  "devDependencies": {
+    "@zeit/ncc": "^0.20.5"
+  }
+}

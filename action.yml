@@ -16,5 +16,5 @@ runs:
   using: 'node12'
   image: 'dist/index.js'
 branding:
-  icon: 'activity'
+  icon: 'repo-push'
   color: 'gray-dark'

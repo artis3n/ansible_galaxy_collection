@@ -20,7 +20,9 @@
   "dependencies": {
     "@actions/core": "^1.2.0",
     "@actions/exec": "^1.0.1",
-    "@zeit/ncc": "^0.20.5",
     "js-yaml": "^3.13.1"
+  },
+  "devDependencies": {
+    "@zeit/ncc": "^0.20.5"
   }
 }

@@ -12,13 +12,15 @@ try {
     const name = galaxy_config.name;
     const version = galaxy_config.version;
 
-    console.log(`Building collection ${namespace}.${name}, version ${version}`);
-    buildCollection(namespace, name, version, apiKey).then(() => { });
+    console.log(`Building collection ${namespace}-${name}, version ${version}`);
+    buildCollection(namespace, name, version, apiKey)
+        .then(() => { })
+        .catch(err => core.setFailed(err.message));
 } catch (error) {
     core.setFailed(error.message);
 }
 
 async function buildCollection(namespace, name, version, apiKey) {
     await exec.exec('ansible-galaxy collection build');
-    await exec.exec(`ansible-galaxy collection publish ${namespace}.${name}-${version}.tar.gz --api-key=${apiKey}`)
+    await exec.exec(`ansible-galaxy collection publish ${namespace}-${name}-${version}.tar.gz --api-key=${apiKey}`)
 }

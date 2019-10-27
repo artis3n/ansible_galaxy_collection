@@ -23,9 +23,19 @@ This should be stored in a Secret on GitHub. See [Creating and Using Secrets Enc
 
 ### galaxy_config_file
 
-**Default**: `galaxy.yml`
+**Default**: `galaxy.yaml`
 
-A collection must have a galaxy.yml file that contains the necessary information to build a collection artifact. Defaults to `galaxy.yml` in the project root.
+A collection must have a galaxy.yaml file that contains the necessary information to build a collection artifact. Defaults to `galaxy.yaml` in the project root.
+
+*Note*: Ansible accepts either `galaxy.yaml` or `galaxy.yml` as a default Galaxy config. If you are using `galaxy.yml`, specify it explicitly for this action:
+
+```yaml
+- name: Build and Deploy Collection
+  uses: artis3n/ansible_galaxy_collection@v1.0.7
+  with:
+    api_key: 'df328fawrfr32iuaw'
+    galaxy_config_file: 'galaxy.yml'
+```
 
 ## Example Usage
 

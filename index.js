@@ -5,7 +5,7 @@ const fs = require('fs');
 
 try {
     const apiKey = core.getInput('api_key');
-    const galaxy_config_file = core.getInput('galaxy_config_file') || 'galaxy.yaml';
+    const galaxy_config_file = core.getInput('galaxy_config_file') || 'galaxy.yml';
     const galaxy_config = yaml.safeLoad(fs.readFileSync(galaxy_config_file, 'utf8'));
 
     const namespace = galaxy_config.namespace;

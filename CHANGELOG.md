@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Any unreleased changes will be included here.
 
+## [1.0.8] - 2019-11-01
+
+### Changed
+
+- Changed the default value of `galaxy_config_file` to match Ansible's expectation. `galaxy.yaml` -> `galaxy.yml`.
+
 ## [1.0.7] - 2019-10-22
 
 ### Fixed

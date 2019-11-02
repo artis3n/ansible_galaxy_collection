@@ -41,7 +41,7 @@ A collection must have a galaxy.yml file that contains the necessary information
     pip install ansible  # Must be at least 2.9.0
 
 - name: Build and Deploy Collection
-  uses: artis3n/ansible_galaxy_collection@v1.0.7
+  uses: artis3n/ansible_galaxy_collection@v1
   with:
     api_key: 'df328fawrfr32iuaw'
 ```

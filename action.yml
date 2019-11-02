@@ -1,0 +1,20 @@
+---
+name: 'Deploy Ansible Galaxy Collection'
+description: 'Builds and deploys a Collection to Ansible Galaxy'
+author: 'Artis3n <dev@quantummadness.com>'
+inputs:
+  api_key:
+    description: |
+      Ansible Galaxy API key. This should be stored in a Secret on Github.
+
+      See https://help.github.com/en/github/automating-your-workflow-with-github-actions/virtual-environments-for-github-actions#creating-and-using-secrets-encrypted-variables.
+    required: true
+  galaxy_config_file:
+    description: 'A collection must have a galaxy.yml file that contains the necessary information to build a collection artifact. Defaults to "galaxy.yml" in the project root.'
+    default: 'galaxy.yml'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+branding:
+  icon: 'box'
+  color: 'purple'

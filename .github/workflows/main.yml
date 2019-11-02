@@ -16,6 +16,6 @@ jobs:
       - name: npm install
         run: npm install
       - name: Testing the action
-        uses: artis3n/ansible_galaxy_collection
+        uses: artis3n/ansible_galaxy_collection@HEAD
         with:
           api_key: ${{ secrets.GALAXY_API_KEY }}

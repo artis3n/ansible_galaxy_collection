@@ -1187,7 +1187,7 @@ const yaml = __webpack_require__(414);
 const fs = __webpack_require__(747);
 
 try {
-    const apiKey = core.getInput('api_key');
+    const apiKey = core.getInput('api_key', { required: true });
     const galaxy_config_file = core.getInput('galaxy_config_file') || 'galaxy.yml';
     const galaxy_config = yaml.safeLoad(fs.readFileSync(galaxy_config_file, 'utf8'));
 
@@ -1195,9 +1195,9 @@ try {
     const name = galaxy_config.name;
     const version = galaxy_config.version;
 
-    console.log(`Building collection ${namespace}-${name}, version ${version}`);
+    core.debug(`Building collection ${namespace}-${name}, version ${version}`);
     buildCollection(namespace, name, version, apiKey)
-        .then(() => { })
+        .then(() => core.debug(`Successfully published ${namespace}-${name} v${version} to Ansible Galaxy.`))
         .catch(err => core.setFailed(err.message));
 } catch (error) {
     core.setFailed(error.message);

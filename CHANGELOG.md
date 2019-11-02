@@ -8,6 +8,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Any unreleased changes will be included here.
 
+## [1.0.9] - 2019-11-02
+
+### Fixed
+
+- Missing `api_key` input parameter now properly fails the action.
+
+### Added
+
+- Helpful debug message on successful completion.
+
+### Changed
+
+- `console.log` messages now use `core.debug` for better action logging.
+
 ## [1.0.8] - 2019-11-01
 
 ### Changed

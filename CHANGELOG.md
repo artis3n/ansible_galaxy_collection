@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Helpful debug message on successful completion.
+- GitHub Action to automatically update latest release tags.
 
 ### Changed
 

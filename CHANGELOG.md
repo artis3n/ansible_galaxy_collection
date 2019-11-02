@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Helpful debug message on successful completion.
 - GitHub Action to automatically update latest release tags.
+- Error checking if `galaxy.yml` values are missing.
 
 ### Changed
 

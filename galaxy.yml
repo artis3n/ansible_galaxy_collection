@@ -1,7 +1,7 @@
 ---
 
 namespace: artis3n
-name: TEST_resource_do_not_use
+name: test_resource_do_not_use
 version: 0.0.1
 readme: README.md
 authors:

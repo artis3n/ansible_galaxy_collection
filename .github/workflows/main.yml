@@ -1,4 +1,4 @@
-name: Build distribution
+name: Testing the Action
 
 on: [push]
 
@@ -16,6 +16,6 @@ jobs:
       - name: npm install
         run: npm install
       - name: Testing the action
-        uses: artis3n/ansible_galaxy_collection@$GITHUB_SHA
+        uses: artis3n/ansible_galaxy_collection@${{ github.sha }}
         with:
           api_key: ${{ secrets.GALAXY_API_KEY }}

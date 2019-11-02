@@ -8,19 +8,37 @@ try {
     const galaxy_config_file = core.getInput('galaxy_config_file') || 'galaxy.yml';
     const galaxy_config = yaml.safeLoad(fs.readFileSync(galaxy_config_file, 'utf8'));
 
-    const namespace = galaxy_config.namespace;
-    const name = galaxy_config.name;
-    const version = galaxy_config.version;
+    const collection = new AnsibleCollection(galaxy_config.namespace, galaxy_config.name, galaxy_config.version);
 
-    core.debug(`Building collection ${namespace}-${name}, version ${version}`);
-    buildCollection(namespace, name, version, apiKey)
+    core.debug(`Building collection ${collection.title}`);
+    buildCollection(collection, apiKey)
         .then(() => core.debug(`Successfully published ${namespace}-${name} v${version} to Ansible Galaxy.`))
         .catch(err => core.setFailed(err.message));
 } catch (error) {
     core.setFailed(error.message);
 }
 
-async function buildCollection(namespace, name, version, apiKey) {
+async function buildCollection(collection, apiKey) {
     await exec.exec('ansible-galaxy collection build');
-    await exec.exec(`ansible-galaxy collection publish ${namespace}-${name}-${version}.tar.gz --api-key=${apiKey}`)
+    await exec.exec(`ansible-galaxy collection publish ${collection.title}.tar.gz --api-key=${apiKey}`)
+}
+
+class AnsibleCollection {
+    constructor(namespace, name, version) {
+        this.namespace = this._validateParam(namespace);
+        this.name = this._validateParam(name);
+        this.version = this._validateParam(version);
+    }
+
+    get title() {
+        return `${this.namespace}-${this.name}-${this.version}`;
+    }
+
+    _validateParam(param) {
+        if (param !== undefined) {
+            return param;
+        }
+        core.error("galaxy.yml is missing required namespace, name, or version parameter.");
+        throw new Error("Missing required parameters in galaxy.yml");
+    }
 }

@@ -1,0 +1,21 @@
+name: Build distribution
+
+on: [push]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: npm install
+        run: npm install
+      - name: Testing the action
+        uses: artis3n/ansible_galaxy_collection@v1
+        with:
+          api_key: ${{ secrets.GALAXY_API_KEY }}

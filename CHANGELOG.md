@@ -8,6 +8,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Any unreleased changes will be included here.
 
+## [1.0.10] - 2019-11-02
+
+### Fixed
+
+- Missed correcting outdated variables in a debug message in 1.0.9. Fixed.
+
+### Changed
+
+- The AnsibleCollection class caused some kind of issue with the Actions workflow. Too much of a headache to be worth it, removing.
+
 ## [1.0.9] - 2019-11-02
 
 ### Fixed

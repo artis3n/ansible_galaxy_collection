@@ -12,7 +12,7 @@ try {
 
     core.debug(`Building collection ${collection.title}`);
     buildCollection(collection, apiKey)
-        .then(() => {})
+        .then(() => core.debug("Successfully published to Ansible Galaxy."))
         .catch(err => core.setFailed(err.message));
 } catch (error) {
     core.setFailed(error.message);

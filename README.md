@@ -11,7 +11,7 @@ This action expects to be run from a repository with certain met conditions.
     1. This means your workflow should include a step for `uses: actions/setup-python@v1`.
     1. Before this action is called, ensure that `ansible` is installed (`pip install ansible`).
 
-An example workflow using this action can be found [here](https://github.com/artis3n/github_version-ansible_plugin/blob/master/.github/workflows/ansiblegalaxy.yml).
+An example workflow using this action can be found [here](https://github.com/artis3n/ansible-collection-github/blob/master/.github/workflows/deploy.yml).
 
 ## Inputs
 

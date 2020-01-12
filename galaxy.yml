@@ -2,10 +2,10 @@
 
 namespace: artis3n
 name: test_resource_do_not_use
-version: 0.0.4
+version: 0.0.5
 readme: README.md
 authors:
-  - Ari Kalfus (@artis3n) <dev@quantummadness.com>
+  - Ari Kalfus (@artis3n) <dev@artis3nal.com>
 description: This is a test collection used for running tests on https://github.com/artis3n/ansible_galaxy_collection.
 license_file: LICENSE
 dependencies: { }

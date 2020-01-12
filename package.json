@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/artis3n/ansible_galaxy_collection.git"
   },
-  "author": "Artis3n <dev@quantummadness.com>",
+  "author": "Artis3n <dev@artis3nal.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/artis3n/ansible_galaxy_collection/issues"

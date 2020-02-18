@@ -1,4 +1,5 @@
 import { debug as coreDebug, error as coreError, getInput, setFailed } from '@actions/core';
+import { which } from '@actions/io';
 import { exec } from '@actions/exec';
 import { safeLoad } from 'js-yaml';
 import { readFileSync } from 'fs';
@@ -31,8 +32,9 @@ try {
 }
 
 async function buildCollection(namespace: string, name: string, version: number, apiKey: string) {
-  await exec('ansible-galaxy collection build');
+  const galaxyCommandPath = await which('ansible-galaxy', true);
+  await exec(`${galaxyCommandPath} collection build`);
   await exec(
-    `ansible-galaxy collection publish ${namespace}-${name}-${version}.tar.gz --api-key=${apiKey}`,
+    `${galaxyCommandPath} collection publish ${namespace}-${name}-${version}.tar.gz --api-key=${apiKey}`,
   );
 }

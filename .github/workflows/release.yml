@@ -19,6 +19,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Get the version
+        id: get_version
+        run: echo ::set-env name=VERSION::${GITHUB_REF/refs\/tags\//}
+
       - name: Deploy to GitHub Package Registry
         uses: elgohr/Publish-Docker-Github-Action@2.12
         with:
@@ -27,7 +31,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
           dockerfile: Dockerfile
-          tags: "latest,${{ github.ref }}"
+          tags: "latest,$VERSION"
 
       - name: Deploy to Docker Hub
         uses: elgohr/Publish-Docker-Github-Action@2.12
@@ -36,4 +40,4 @@ jobs:
           username: ${{ secrets.docker_username }}
           password: ${{ secrets.docker_password }}
           dockerfile: Dockerfile
-          tags: "latest,${{ github.ref }}"
+          tags: "latest,$VERSION"

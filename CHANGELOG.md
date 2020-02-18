@@ -8,6 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Any unreleased changes will be included here.
 
+## [2.0.0] - 2019-02-17
+
+### Changed
+
+- Action is now Docker-based. This removes all of the dependency steps users would have to set in their workflow files.
+- Usage is now simplified and updated on the README.
+
 ## [1.0.10] - 2019-11-02
 
 ### Fixed

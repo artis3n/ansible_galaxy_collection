@@ -13,3 +13,27 @@ jobs:
         uses: technote-space/release-github-actions@v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy to GitHub Package Registry
+        uses: elgohr/Publish-Docker-Github-Action@2.12
+        with:
+          name: artis3n/ansible_galaxy_collection/runtime
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          dockerfile: Dockerfile
+          tags: "latest,${{ github.ref }}"
+
+      - name: Deploy to Docker Hub
+          uses: elgohr/Publish-Docker-Github-Action@2.12
+          with:
+            name: artis3n/ansible_galaxy_collection
+            username: ${{ secrets.docker_username }}
+            password: ${{ secrets.docker_password }}
+            dockerfile: Dockerfile
+            tags: "latest,${{ github.ref }}"

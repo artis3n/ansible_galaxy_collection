@@ -45,8 +45,7 @@
   "lint-staged": {
     "*.ts": [
       "npm run format",
-      "npm run build",
-      "git add"
+      "npm run build"
     ]
   }
 }

@@ -8,6 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Any unreleased changes will be included here.
 
+## [2.0.0] - 2019-02-17
+
+### Changed
+
+- Action is now Docker-based. This removes all of the dependency steps users would have to set in their workflow files.
+- Usage is now simplified and updated on the README.
+
 ## [1.0.10] - 2019-11-02
 
 ### Fixed
@@ -60,7 +67,7 @@ This version used incorrect syntax for the `ansible-galaxy collection publish` c
 
 ### Added
 
-- Adding new built `dist/index.ts` that I forgot to include in the previous release
+- Adding new built `dist/index.js` that I forgot to include in the previous release
 
 ## [1.0.4] - 2019-10-22 [YANKED]
 

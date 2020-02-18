@@ -1,4 +1,4 @@
-FROM alpine:3
+FROM ubuntu:rolling
 RUN apt update
 RUN apt install python3 python3-pip nodejs
 RUN pip3 install --user ansible

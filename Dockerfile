@@ -1,10 +1,8 @@
-FROM python:slim AS ansible
-RUN python -m pip install --upgrade pip
-RUN pip install --user --upgrade ansible
-
-FROM node:slim AS action
-COPY . .
-COPY --from=ansible /root/.local /root/.local
+FROM alpine:3
+RUN apt update
+RUN apt install python3 python3-pip nodejs
+RUN pip3 install --user ansible
 ENV PATH=/root/.local/bin:$PATH
+COPY . .
 RUN npm install --production
 ENTRYPOINT ["node", "dist/index.js"]

@@ -3,8 +3,8 @@
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/artis3n/ansible_galaxy_collection/Testing%20the%20Action)](https://github.com/artis3n/ansible_galaxy_collection/actions)
 ![GitHub](https://img.shields.io/github/license/artis3n/ansible_galaxy_collection)
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/artis3n/ansible_galaxy_collection)](https://github.com/artis3n/ansible_galaxy_collection/releases)
-![GitHub followers](https://img.shields.io/github/followers/artis3n?style=social)
-![Twitter Follow](https://img.shields.io/twitter/follow/artis3n?style=social)
+[![GitHub followers](https://img.shields.io/github/followers/artis3n?style=social)](https://github.com/artis3n/)
+[![Twitter Follow](https://img.shields.io/twitter/follow/artis3n?style=social)](https://twitter.com/Artis3n)
 
 Deploy a Collection to Ansible Galaxy.
 
@@ -34,7 +34,7 @@ A collection must have a galaxy.yml file that contains the necessary information
 
 ```yaml
 - name: Build and Deploy Collection
-  uses: artis3n/ansible_galaxy_collection@v1
+  uses: artis3n/ansible_galaxy_collection@v2
   with:
     api_key: '${{ secrets.GALAXY_API_KEY }}'
 ```

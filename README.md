@@ -34,7 +34,7 @@ A collection must have a galaxy.yml file that contains the necessary information
 
 ```yaml
 - name: Build and Deploy Collection
-  uses: artis3n/ansible_galaxy_collection@v1
+  uses: artis3n/ansible_galaxy_collection@v2
   with:
     api_key: '${{ secrets.GALAXY_API_KEY }}'
 ```

@@ -30,10 +30,10 @@ jobs:
           tags: "latest,${{ github.ref }}"
 
       - name: Deploy to Docker Hub
-          uses: elgohr/Publish-Docker-Github-Action@2.12
-          with:
-            name: artis3n/ansible_galaxy_collection
-            username: ${{ secrets.docker_username }}
-            password: ${{ secrets.docker_password }}
-            dockerfile: Dockerfile
-            tags: "latest,${{ github.ref }}"
+        uses: elgohr/Publish-Docker-Github-Action@2.12
+        with:
+          name: artis3n/ansible_galaxy_collection
+          username: ${{ secrets.docker_username }}
+          password: ${{ secrets.docker_password }}
+          dockerfile: Dockerfile
+          tags: "latest,${{ github.ref }}"

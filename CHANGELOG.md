@@ -60,7 +60,7 @@ This version used incorrect syntax for the `ansible-galaxy collection publish` c
 
 ### Added
 
-- Adding new built `dist/index.js` that I forgot to include in the previous release
+- Adding new built `dist/index.ts` that I forgot to include in the previous release
 
 ## [1.0.4] - 2019-10-22 [YANKED]
 

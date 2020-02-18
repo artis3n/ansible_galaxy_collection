@@ -2,10 +2,15 @@
   "name": "ansible_galaxy_collection",
   "version": "1.0.10",
   "description": "Deploy a collection to Ansible Galaxy",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "ncc build index.js -o dist"
+    "test": "echo \\\"Error: no test specified\\\" && exit 1",
+    "build": "tsc",
+    "dev": "tsc -w",
+    "format": "prettier --write **/*.ts",
+    "format-check": "prettier --check **/*.ts",
+    "clean": "rm -rf node_modules",
+    "all": "npm run build && npm run format"
   },
   "repository": {
     "type": "git",
@@ -18,11 +23,29 @@
   },
   "homepage": "https://github.com/artis3n/ansible_galaxy_collection#readme",
   "dependencies": {
-    "@actions/core": "^1.2.0",
-    "@actions/exec": "^1.0.1",
+    "@actions/core": "^1.2.2",
+    "@actions/exec": "^1.0.3",
     "js-yaml": "^3.13.1"
   },
   "devDependencies": {
-    "@zeit/ncc": "^0.20.5"
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@types/js-yaml": "^3.12.2",
+    "@types/node": "^13.7.1",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.7",
+    "prettier": "^1.19.1",
+    "typescript": "^3.7.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "npm run format",
+      "git add"
+    ]
   }
 }

@@ -14,6 +14,8 @@ const io_1 = require("@actions/io");
 const exec_1 = require("@actions/exec");
 const js_yaml_1 = require("js-yaml");
 const fs_1 = require("fs");
+const validate_1 = require("./validate");
+const enums_1 = require("./enums");
 try {
     const apiKey = core_1.getInput('api_key', { required: true });
     const galaxy_config_file = core_1.getInput('galaxy_config_file') || process.env.INPUT_GALAXY_API_KEY;
@@ -27,6 +29,10 @@ try {
         core_1.setFailed(error.message);
     }
     else {
+        if (!validate_1.isSemver(version)) {
+            core_1.setFailed(`Version (${version}) is not semver-compatible.`);
+            process.exit(enums_1.ExitCodes.InvalidSemver);
+        }
         core_1.debug(`Building collection ${namespace}-${name}-${version}`);
         buildCollection(namespace, name, version, apiKey)
             .then(() => core_1.debug(`Successfully published ${namespace}-${name} v${version} to Ansible Galaxy.`))
@@ -43,3 +49,4 @@ function buildCollection(namespace, name, version, apiKey) {
         yield exec_1.exec(`${galaxyCommandPath} collection publish ${namespace}-${name}-${version}.tar.gz --api-key=${apiKey}`);
     });
 }
+exports.buildCollection = buildCollection;

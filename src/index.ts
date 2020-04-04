@@ -8,7 +8,7 @@ import { GalaxyConfig } from './types';
 
 try {
   const apiKey = getInput('api_key', { required: true });
-  const galaxy_config_file = getInput('galaxy_config_file') || 'galaxy.yml';
+  const galaxy_config_file = getInput('galaxy_config_file') || process.env.INPUT_GALAXY_API_KEY!;
   const galaxy_config: GalaxyConfig = safeLoad(readFileSync(galaxy_config_file, 'utf8'));
 
   const namespace = galaxy_config.namespace;

@@ -23,20 +23,20 @@
   },
   "homepage": "https://github.com/artis3n/ansible_galaxy_collection#readme",
   "dependencies": {
-    "@actions/core": "^1.2.2",
+    "@actions/core": "^1.2.3",
     "@actions/exec": "^1.0.3",
     "@actions/io": "^1.0.2",
     "js-yaml": "^3.13.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.4",
-    "@babel/preset-env": "^7.8.4",
-    "@types/js-yaml": "^3.12.2",
-    "@types/node": "^13.7.1",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@types/js-yaml": "^3.12.3",
+    "@types/node": "^13.11.0",
     "husky": "^4.2.3",
-    "lint-staged": "^10.0.7",
+    "lint-staged": "^10.1.1",
     "prettier": "^1.19.1",
-    "typescript": "^3.7.5"
+    "typescript": "^3.8.3"
   },
   "husky": {
     "hooks": {

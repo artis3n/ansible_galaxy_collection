@@ -9,12 +9,16 @@ inputs:
 
       See https://help.github.com/en/github/automating-your-workflow-with-github-actions/virtual-environments-for-github-actions#creating-and-using-secrets-encrypted-variables.
     required: true
+  collection_dir:
+    description: |
+      The directory in which the Ansible Collection is stored. This defaults to the project root.
+    required: false
   galaxy_config_file:
     description: |
       A collection must have a galaxy.yml file that contains the necessary information to build a
       collection artifact.
 
-      Defaults to "galaxy.yml" in the project root.
+      Defaults to "galaxy.yml" in the `collection_dir`, which is by default the project root.
     required: false
     default: 'galaxy.yml'
 runs:

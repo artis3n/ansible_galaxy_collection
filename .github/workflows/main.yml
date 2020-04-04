@@ -10,7 +10,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Testing the action
-        uses: artis3n/ansible_galaxy_collection@HEAD
+      - name: Get the version
+        id: get_version
+        run: echo ::set-env name=VERSION::${GITHUB_REF/refs\/tags\//}
+
+      - name: Test the action
+        uses: ./
         with:
-          api_key: ${{ secrets.GALAXY_API_KEY }}
+          api_key: '${{ secrets.GALAXY_API_KEY }}'
+          galaxy_version: "$VERSION"

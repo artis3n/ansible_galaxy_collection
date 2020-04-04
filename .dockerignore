@@ -1,0 +1,11 @@
+.git
+.dockerignore
+node_modules
+src
+galaxy.yml
+.github
+.nvmrc
+.prettierrc.json
+CHANGELOG.md
+README.md
+tsconfig.json

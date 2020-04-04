@@ -24,7 +24,7 @@ jobs:
         run: echo ::set-env name=VERSION::${GITHUB_REF/refs\/tags\//}
 
       - name: Deploy to GitHub Package Registry
-        uses: elgohr/Publish-Docker-Github-Action@2.12
+        uses: elgohr/Publish-Docker-Github-Action@b2f63259b466ca5a4be395c392546de447450334 # 2.14
         with:
           name: artis3n/ansible_galaxy_collection/runtime
           username: ${{ github.actor }}
@@ -34,7 +34,7 @@ jobs:
           tags: "latest,$VERSION"
 
       - name: Deploy to Docker Hub
-        uses: elgohr/Publish-Docker-Github-Action@2.12
+        uses: elgohr/Publish-Docker-Github-Action@b2f63259b466ca5a4be395c392546de447450334 # 2.14
         with:
           name: artis3n/ansible_galaxy_collection
           username: ${{ secrets.docker_username }}

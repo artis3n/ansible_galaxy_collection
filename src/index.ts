@@ -5,6 +5,8 @@ import { safeLoad } from 'js-yaml';
 import { readFileSync } from 'fs';
 
 import { GalaxyConfig } from './types';
+import { isSemver } from './validate';
+import { ExitCodes } from './enums';
 
 try {
   const apiKey = getInput('api_key', { required: true });
@@ -20,6 +22,11 @@ try {
     coreError(error.message);
     setFailed(error.message);
   } else {
+    if (!isSemver(version)) {
+      setFailed(`Version (${version}) is not semver-compatible.`);
+      process.exit(ExitCodes.InvalidSemver);
+    }
+
     coreDebug(`Building collection ${namespace}-${name}-${version}`);
     buildCollection(namespace, name, version, apiKey)
       .then(() =>
@@ -31,7 +38,12 @@ try {
   setFailed(error.message);
 }
 
-async function buildCollection(namespace: string, name: string, version: number, apiKey: string) {
+export async function buildCollection(
+  namespace: string,
+  name: string,
+  version: string,
+  apiKey: string,
+) {
   const galaxyCommandPath = await which('ansible-galaxy', true);
   await exec(`${galaxyCommandPath} collection build`);
   await exec(

@@ -10,12 +10,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@actions/core");
+const io_1 = require("@actions/io");
 const exec_1 = require("@actions/exec");
 const js_yaml_1 = require("js-yaml");
 const fs_1 = require("fs");
 try {
     const apiKey = core_1.getInput('api_key', { required: true });
-    const galaxy_config_file = core_1.getInput('galaxy_config_file') || 'galaxy.yml';
+    const galaxy_config_file = core_1.getInput('galaxy_config_file') || process.env.INPUT_GALAXY_API_KEY;
     const galaxy_config = js_yaml_1.safeLoad(fs_1.readFileSync(galaxy_config_file, 'utf8'));
     const namespace = galaxy_config.namespace;
     const name = galaxy_config.name;
@@ -37,7 +38,8 @@ catch (error) {
 }
 function buildCollection(namespace, name, version, apiKey) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield exec_1.exec('ansible-galaxy collection build');
-        yield exec_1.exec(`ansible-galaxy collection publish ${namespace}-${name}-${version}.tar.gz --api-key=${apiKey}`);
+        const galaxyCommandPath = yield io_1.which('ansible-galaxy', true);
+        yield exec_1.exec(`${galaxyCommandPath} collection build`);
+        yield exec_1.exec(`${galaxyCommandPath} collection publish ${namespace}-${name}-${version}.tar.gz --api-key=${apiKey}`);
     });
 }

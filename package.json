@@ -44,13 +44,12 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "tsc --noEmit && lint-staged"
     }
   },
   "lint-staged": {
     "*.ts": [
-      "npm run format",
-      "npm run build"
+      "npm run format"
     ]
   }
 }

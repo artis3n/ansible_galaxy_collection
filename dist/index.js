@@ -49,4 +49,3 @@ function buildCollection(namespace, name, version, apiKey) {
         yield exec_1.exec(`${galaxyCommandPath} collection publish ${namespace}-${name}-${version}.tar.gz --api-key=${apiKey}`);
     });
 }
-exports.buildCollection = buildCollection;

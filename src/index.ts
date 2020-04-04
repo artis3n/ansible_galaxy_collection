@@ -38,12 +38,7 @@ try {
   setFailed(error.message);
 }
 
-export async function buildCollection(
-  namespace: string,
-  name: string,
-  version: string,
-  apiKey: string,
-) {
+async function buildCollection(namespace: string, name: string, version: string, apiKey: string) {
   const galaxyCommandPath = await which('ansible-galaxy', true);
   await exec(`${galaxyCommandPath} collection build`);
   await exec(

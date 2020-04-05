@@ -13,8 +13,8 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 RUN pip3 install --upgrade pip ansible
 
-COPY dist/ ./
+COPY dist/ dist/
 COPY package*.json ./
 RUN npm install --production
 
-ENTRYPOINT ["node", "index.js"]
+ENTRYPOINT ["node", "dist/index.js"]

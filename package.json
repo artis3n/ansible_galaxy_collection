@@ -12,7 +12,7 @@
     "format": "prettier --write **/*.ts",
     "format-check": "prettier --check **/*.ts",
     "clean": "rm -rf node_modules",
-    "all": "npm run build && npm run format"
+    "all": "npm run format && npm run build"
   },
   "repository": {
     "type": "git",
@@ -39,22 +39,10 @@
     "@types/js-yaml": "^3.12.3",
     "@types/node": "^13.11.0",
     "@types/semver": "^7.1.0",
-    "husky": "^4.2.3",
     "jest": "^25.2.7",
     "jest-circus": "^25.2.7",
-    "lint-staged": "^10.1.1",
     "prettier": "^1.19.1",
     "ts-jest": "^25.3.1",
     "typescript": "^3.8.3"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsc --noEmit && lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.ts": [
-      "npm run format"
-    ]
   }
 }

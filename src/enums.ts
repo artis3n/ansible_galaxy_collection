@@ -11,3 +11,10 @@ export enum PublishCommand {
   Archive,
   ApiKeyFlag,
 }
+
+export enum BuildCommand {
+  Executable,
+  Collection,
+  Command,
+  Archive,
+}

@@ -11,10 +11,11 @@ import { validateSync } from 'class-validator';
 
 try {
   const apiKey = getInput('api_key', { required: true });
-  const galaxy_config_file = getInput('galaxy_config_file') || process.env.INPUT_GALAXY_API_KEY!;
-  const galaxy_config: GalaxyConfig = safeLoad(readFileSync(galaxy_config_file, 'utf8'));
+  const galaxyConfigFile = getInput('galaxy_config_file');
+  const collectionLocation: string = getInput('collection_dir');
+  const galaxyConfig: GalaxyConfig = safeLoad(readFileSync(galaxyConfigFile, 'utf8'));
 
-  const collection = new Collection(galaxy_config, apiKey);
+  const collection = new Collection(galaxyConfig, apiKey, collectionLocation);
 
   const validationErrors = validateSync(collection);
   if (validationErrors.length > 0) {

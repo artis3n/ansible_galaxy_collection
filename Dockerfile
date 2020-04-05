@@ -17,4 +17,4 @@ COPY dist/ dist/
 COPY package*.json ./
 RUN npm install --production
 
-ENTRYPOINT ["node", "dist/index.js"]
+ENTRYPOINT ["node", "dist/main.js"]

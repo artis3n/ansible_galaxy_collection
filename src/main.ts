@@ -8,12 +8,11 @@ import { GalaxyConfig } from './types';
 import { Collection } from './Collection';
 import { ExitCodes } from './enums';
 import { validateSync } from 'class-validator';
-import { join } from "path";
+import { join } from 'path';
 
 try {
   const apiKey = getInput('api_key', { required: true });
   const collectionLocation: string = getInput('collection_dir');
-
   const galaxyConfigFile = getInput('galaxy_config_file');
 
   let galaxyConfigFilePath = galaxyConfigFile;

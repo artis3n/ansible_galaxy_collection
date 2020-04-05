@@ -8,11 +8,16 @@ const exec_1 = require("@actions/exec");
 const Collection_1 = require("./Collection");
 const enums_1 = require("./enums");
 const class_validator_1 = require("class-validator");
+const path_1 = require("path");
 try {
     const apiKey = core_1.getInput('api_key', { required: true });
-    const galaxyConfigFile = core_1.getInput('galaxy_config_file');
     const collectionLocation = core_1.getInput('collection_dir');
-    const galaxyConfig = js_yaml_1.safeLoad(fs_1.readFileSync(galaxyConfigFile, 'utf8'));
+    const galaxyConfigFile = core_1.getInput('galaxy_config_file');
+    let galaxyConfigFilePath = galaxyConfigFile;
+    if (collectionLocation.length > 0) {
+        galaxyConfigFilePath = path_1.join(collectionLocation, galaxyConfigFile);
+    }
+    const galaxyConfig = js_yaml_1.safeLoad(fs_1.readFileSync(galaxyConfigFilePath, 'utf8'));
     const collection = new Collection_1.Collection(galaxyConfig, apiKey, collectionLocation);
     const validationErrors = class_validator_1.validateSync(collection);
     if (validationErrors.length > 0) {

@@ -15,6 +15,8 @@ describe('GalaxyConfig', () => {
     const config = new GalaxyConfig({
       version: '1.1.0',
     });
-    expect((config.version = newVersion)).toThrowError(`${newVersion} is not valid semver`);
+    expect(() => {
+      config.version = newVersion;
+    }).toThrow(`${newVersion} is not valid semver`);
   });
 });

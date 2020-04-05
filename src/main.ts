@@ -8,12 +8,19 @@ import { GalaxyConfig } from './types';
 import { Collection } from './Collection';
 import { ExitCodes } from './enums';
 import { validateSync } from 'class-validator';
+import { join } from "path";
 
 try {
   const apiKey = getInput('api_key', { required: true });
-  const galaxyConfigFile = getInput('galaxy_config_file');
   const collectionLocation: string = getInput('collection_dir');
-  const galaxyConfig: GalaxyConfig = safeLoad(readFileSync(galaxyConfigFile, 'utf8'));
+
+  const galaxyConfigFile = getInput('galaxy_config_file');
+
+  let galaxyConfigFilePath = galaxyConfigFile;
+  if (collectionLocation.length > 0) {
+    galaxyConfigFilePath = join(collectionLocation, galaxyConfigFile);
+  }
+  const galaxyConfig: GalaxyConfig = safeLoad(readFileSync(galaxyConfigFilePath, 'utf8'));
 
   const collection = new Collection(galaxyConfig, apiKey, collectionLocation);
 

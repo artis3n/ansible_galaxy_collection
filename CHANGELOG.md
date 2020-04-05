@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Any unreleased changes will be included here.
 
+## [2.1.1] - 2020-04-05
+
+### Fixed
+
+- Fixed the syntax that was breaking releasing the Docker image to Docker Hub and GitHub Package Registry
+
 ## [2.1.0] - 2020-04-05
 
 ### Deprecated

@@ -14,15 +14,15 @@ Deploy a Collection to Ansible Galaxy.
 
 This action expects to be run from a repository with certain met conditions.
 
-1. The repository is an Ansible Galaxy Collection, meaning it contains a `galaxy.yml` file.
+1. The repository contains a valid Ansible Galaxy Collection, meaning it minimally contains a `galaxy.yml` file and a `README.md`.
 
-An example workflow using this action can be found [here](https://github.com/artis3n/ansible-collection-github/blob/master/.github/workflows/deploy.yml).
+An example workflow using this action can be found [here](https://github.com/artis3n/ansible-collection-github/blob/master/.github/workflows/deploy.yml) and in [the tests](.github/workflows/main.yml).
 
 ## Inputs
 
 ### api_key
 
-**Required** Ansible Galaxy API key.
+**Required**: Ansible Galaxy API key.
 
 This should be stored in a Secret on GitHub. See [Creating and Using Secrets Encrypted Variables](https://help.github.com/en/github/automating-your-workflow-with-github-actions/virtual-environments-for-github-actions#creating-and-using-secrets-encrypted-variables).
 
@@ -34,14 +34,13 @@ The directory in which the Ansible Collection is stored. This defaults to the pr
 
 Only change this if your Collection is not stored in your project root.
 
+### galaxy_version
+
+Semver-compatible string: `1`, `1.1`, `1.1.1`, `1.1.1-alpha`
+
+Dynamically inject a semver-compatible version into your `galaxy.yml` file.
+
 <!--
-
-### galaxy_version (TBA)
-
-Semver-compatible string: `1`, `1.1`, `1.1.1`
-
-Dynamically inject a semver-compatible version into your `galaxy_config_file`.
-
 This parameter is not compatible with the `galaxy_version_increment` parameter.
 
 ### galaxy_version_commit (TBA)
@@ -79,20 +78,19 @@ Default usage:
   with:
     api_key: '${{ secrets.GALAXY_API_KEY }}'
 ```
-<!--
+
 Pass in `galaxy.yml` version as an input parameter:
 
 ```yaml
 - name: Get the version from the tag
-  run: echo ::set-env name=VERSION::${GITHUB_REF/refs\/tags\//}
+  run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF/refs\/tags\//
 
 - name: Injecting a dynamic Collection version
   uses: artis3n/ansible_galaxy_collection@v2
   with:
     api_key: '${{ secrets.GALAXY_API_KEY }}'
-    galaxy_version: '$VERSION'
+    galaxy_version: '${{ env.RELEASE_VERSION }}'
 ```
--->
 
 If your Collection root is not in your repo root:
 

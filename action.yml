@@ -13,9 +13,9 @@ inputs:
     description: |
       The directory in which the Ansible Collection is stored. This defaults to the project root.
     required: false
-#  galaxy_version:
-#    description: Dynamically inject a semver-compatible version into your `galaxy.yml`.
-#    required: false
+  galaxy_version:
+    description: Dynamically inject a semver-compatible version into your galaxy.yml file.
+    required: false
 #  galaxy_version_commit:
 #    description: The Action will write the `galaxy_version` value into your `galaxy.yml` and commit it.
 #    required: false

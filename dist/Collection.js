@@ -27,10 +27,11 @@ class Collection {
     /**
      * Validation of input is handled by decorators.
      */
-    constructor(config, apiKey, customDir) {
+    constructor({ config, apiKey, customDir, customVersion }) {
+        this.config = config;
         this.namespace = config.namespace || '';
         this.name = config.name || '';
-        this.version = config.version || '';
+        this.version = this.applyCustomVersion(customVersion);
         this.apiKey = apiKey;
         this.customDir = customDir;
     }
@@ -38,10 +39,18 @@ class Collection {
         return `${this.namespace}-${this.name}-${this.version}`;
     }
     get path() {
-        if (this.customDir && this.customDir.length > 0) {
+        if (this.customDir.length > 0) {
             return this.customDir;
         }
         return '';
+    }
+    applyCustomVersion(customVersion) {
+        let version = this.config.version;
+        if (customVersion !== '') {
+            version = customVersion;
+            this.config.version = version;
+        }
+        return version || '';
     }
     /**
      * Publishes a Collection to Ansible Galaxy.

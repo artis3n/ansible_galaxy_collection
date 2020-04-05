@@ -19,8 +19,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const class_validator_1 = require("class-validator");
-const io_1 = require("@actions/io");
-const exec_1 = require("@actions/exec");
 const decorators_1 = require("./decorators");
 class Collection {
     constructor(config, apiKey) {
@@ -33,11 +31,16 @@ class Collection {
     toString() {
         return `${this.namespace}-${this.name}-${this.version}`;
     }
-    build() {
+    /**
+     * Publishes a Collection to Ansible Galaxy.
+     * @param which
+     * @param exec
+     */
+    publish(which, exec) {
         return __awaiter(this, void 0, void 0, function* () {
-            const galaxyCommandPath = yield io_1.which('ansible-galaxy', true);
-            yield exec_1.exec(`${galaxyCommandPath} collection build`);
-            yield exec_1.exec(`${galaxyCommandPath} collection publish ${this}.tar.gz --api-key=${this.apiKey}`);
+            const galaxyCommandPath = yield which('ansible-galaxy', true);
+            yield exec(`${galaxyCommandPath} collection build`);
+            return exec(`${galaxyCommandPath} collection publish ${this}.tar.gz --api-key=${this.apiKey}`);
         });
     }
 }

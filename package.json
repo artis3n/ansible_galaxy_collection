@@ -12,7 +12,7 @@
     "format": "prettier --write **/*.ts",
     "format-check": "prettier --check **/*.ts",
     "clean": "rm -rf node_modules",
-    "all": "npm run format && npm run build"
+    "all": "npm run format && npm run build && git add . && git s"
   },
   "repository": {
     "type": "git",

@@ -29,4 +29,4 @@ jobs:
         with:
           api_key: '${{ secrets.GALAXY_API_KEY }}'
           # Fake location that's a small amount of content
-          collection_dir: 'fake_resource'
+          collection_dir: 'fake_collection'

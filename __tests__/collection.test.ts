@@ -9,6 +9,7 @@ const fakeCollectionDir = 'fake_collection';
 
 /**
  * Stub the @actions/io 'which' command.
+ * We just have it return the tool that is passed in.
  */
 const whichStub = function(tool: string, _check?: boolean | undefined): Promise<string> {
   return new Promise(resolve => resolve(tool));
@@ -17,6 +18,9 @@ const whichStub = function(tool: string, _check?: boolean | undefined): Promise<
 /**
  * Stub the @actions/exec 'exec' command.
  * We use the stub to ensure the constructed ansible-galaxy command is formatted correctly.
+ *
+ * In this version of the stub, the 'ansible-galaxy collection publish' command is inspected.
+ * We verify that the command has been formatted properly.
  */
 const publishExecStub = function(
   commandLine: string,
@@ -58,6 +62,13 @@ const publishExecStub = function(
   });
 };
 
+/**
+ * Stub the @actions/exec 'exec' command.
+ * We use the stub to ensure the constructed ansible-galaxy command is formatted correctly.
+ *
+ * In this version of the stub, the 'ansible-galaxy collection build' command is inspected.
+ * We verify that the code constructs the command properly based on the existence/formatting of input variables.
+ */
 const buildExecStub = function(
   commandLine: string,
   _args?: string[],
@@ -71,12 +82,8 @@ const buildExecStub = function(
     if (command === 'publish') {
       resolve(0);
     } else {
-      if (archive) {
-        if (archive === fakeCollectionDir) {
-          resolve(0);
-        } else {
-          resolve(1);
-        }
+      if (archive === fakeCollectionDir) {
+        resolve(0);
       } else {
         resolve(1);
       }

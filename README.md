@@ -31,7 +31,11 @@ This should be stored in a Secret on GitHub. See [Creating and Using Secrets Enc
 
 The directory in which the Ansible Collection is stored. This defaults to the project root.
 
-### galaxy_version
+Only change this if your Collection is not stored in your project root.
+
+<!--
+
+### galaxy_version (TBA)
 
 Semver-compatible string: `1`, `1.1`, `1.1.1`
 
@@ -54,11 +58,15 @@ The Action will read the version in galaxy.yml and increment it based on the val
 
 This parameter is not compatible with the `galaxy_version` parameter.
 
-### galaxy_config_file
+-->
+
+### galaxy_config_file (Deprecated)
 
 **Default**: `galaxy.yml`
 
 A collection must have a galaxy.yml file that contains the necessary information to build a collection artifact. Defaults to "galaxy.yml" in the `collection_dir`.
+
+This parameter is deprecated as Ansible Galaxy requires the file to be named `galaxy.yml` and to exist in the root of your Collection. Use `collection_dir` to specify a non-root directory for your Collection.
 
 ## Example Usage
 
@@ -70,7 +78,7 @@ Default usage:
   with:
     api_key: '${{ secrets.GALAXY_API_KEY }}'
 ```
-
+<!--
 Pass in `galaxy.yml` version as an input parameter:
 
 ```yaml
@@ -83,21 +91,22 @@ Pass in `galaxy.yml` version as an input parameter:
     api_key: '${{ secrets.GALAXY_API_KEY }}'
     galaxy_version: '$VERSION'
 ```
+-->
 
-If your Collection is not in your repo root:
+If your Collection root is not in your repo root:
 
 ```yaml
 - name: When the Collection is not in the project root
   uses: artis3n/ansible_galaxy_collection@v2
   with:
     api_key: '${{ secrets.GALAXY_API_KEY }}'
-    collection_dir: 'src/my_collection/'
+    collection_dir: 'src/my_collection'
 ```
 
 ## Exit Codes
 
 - `0`: `Ok`
 - `1`: `DeployFailed`
-    - The Action attempted to deploy to Ansible Galaxy, but failed.
+    - The Action attempted to deploy to Ansible Galaxy, but failed. There will be details of the error from Ansible Galaxy recorded at the end of the action's logs.
 - `2`: `ValidationFailed`
     - One or more user-supplied input parameters were invalid. See the error message for validation details.

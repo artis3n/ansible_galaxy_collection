@@ -15,17 +15,17 @@ export class Collection {
   @IsSemver({ message: '$value must be semver-compatible' })
   @IsNotEmpty()
   version: string;
-  private readonly customDir?: string;
+  private readonly customDir: string;
   @IsNotEmpty()
   readonly apiKey: string;
 
   /**
    * Validation of input is handled by decorators.
    */
-  constructor(config: GalaxyConfig, apiKey: string, customDir?: string) {
+  constructor(config: GalaxyConfig, apiKey: string, customDir: string, customVersion: string) {
     this.namespace = config.namespace || '';
     this.name = config.name || '';
-    this.version = config.version || '';
+    this.version = customVersion !== '' ? customVersion : config.version || '';
     this.apiKey = apiKey;
     this.customDir = customDir;
   }
@@ -35,7 +35,7 @@ export class Collection {
   }
 
   get path() {
-    if (this.customDir && this.customDir.length > 0) {
+    if (this.customDir.length > 0) {
       return this.customDir;
     }
     return '';

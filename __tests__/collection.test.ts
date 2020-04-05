@@ -100,6 +100,8 @@ describe('Collection', () => {
         version: '1.0.0',
       },
       'key',
+      '',
+      '',
     );
     const errors = await validate(collection);
     expect(errors).toHaveLength(0);
@@ -113,6 +115,8 @@ describe('Collection', () => {
         version: '',
       },
       'key',
+      '',
+      '',
     );
     const errors = await validate(collection);
     expect(errors).toHaveLength(3);
@@ -126,6 +130,8 @@ describe('Collection', () => {
         version: '1.2.a',
       },
       'key',
+      '',
+      '',
     );
     const errors = await validate(collection);
     expect(errors).toHaveLength(1);
@@ -140,6 +146,8 @@ describe('Collection', () => {
         version: '1.1.0',
       },
       'key',
+      '',
+      '',
     );
     expect(`${collection}`).toEqual('test-test-1.1.0');
   });
@@ -152,6 +160,8 @@ describe('Collection', () => {
         version: '1.1.1',
       },
       'key',
+      '',
+      '',
     );
 
     const result = await collection.publish(whichStub, publishExecStub);
@@ -167,6 +177,8 @@ describe('Collection', () => {
         version: '1.0.0',
       },
       'key',
+      '',
+      '',
     );
 
     const result = await collection.publish(whichStub, publishExecStub);
@@ -181,6 +193,8 @@ describe('Collection', () => {
         version: '1.1.1',
       },
       'key',
+      '',
+      '',
     );
 
     expect(collection.path).toEqual('');
@@ -195,9 +209,40 @@ describe('Collection', () => {
       },
       'key',
       fakeCollectionDir,
+      '',
     );
 
     const result = await collection.publish(whichStub, buildExecStub);
     expect(result).toEqual(0);
+  });
+
+  test('overwrites the galaxy.yml version with a custom version', () => {
+    const customVersion = '1.2.3';
+    const collection = new Collection(
+      {
+        namespace: 'test',
+        name: 'test',
+        version: '1.1.1',
+      },
+      'key',
+      '',
+      customVersion,
+    );
+    expect(collection.version).toEqual(customVersion);
+  });
+
+  test('retains the galaxy.yml version if not custom version is supplied', () => {
+    const version = '1.1.1';
+    const collection = new Collection(
+      {
+        namespace: 'test',
+        name: 'test',
+        version: version,
+      },
+      'key',
+      '',
+      '',
+    );
+    expect(collection.version).toEqual(version);
   });
 });

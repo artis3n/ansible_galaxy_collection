@@ -8,7 +8,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Any unreleased changes will be included here.
 
-## [2.0.0] - 2019-02-17
+## [2.1.0] - 2020-04-05
+
+### Deprecated
+
+- Deprecated the `galaxy_config_file` input parameter. There is no legitimate reason to need this parameter. Ansible Galaxy requires the `galaxy.yml` file to be in the Collection's root, and the Collection's location can now be customized with `collection_dir`. It will be removed in a future major release.
+
+### Added
+
+- Added a `collection_dir` input parameter to the action.
+- Added Jest tests
+
+### Changed
+
+- Slimmed down the Docker container slightly with Dockerfile optimizations
+- Typescript refactor for ease of refactor-ability and testing
+- Switched to the new `use: ./` syntax to test the current version of the Action in the `main.yml` workflow file
+
+## [2.0.1] - 2020-02-18
+
+### Fixed
+
+- Fixed an issue with the new Docker-based action where the ansible-galaxy command failed to run in the container.
+
+## [2.0.0] - 2020-02-17
 
 ### Changed
 

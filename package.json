@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm run test:unit",
     "test:unit": "jest",
-    "test:e2e": "act -j test_deploy -s GALAXY_API_KEY='fakekey' --env-file fake_resource/.env",
+    "test:e2e": "act -j test_deploy -s GALAXY_API_KEY='fakekey' --env-file fake_collection/.env",
     "build": "tsc",
     "dev": "tsc -w",
     "format": "prettier --write **/*.ts",

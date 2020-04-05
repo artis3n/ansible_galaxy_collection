@@ -2,7 +2,7 @@
 .dockerignore
 node_modules
 src
-fake_resource
+fake_collection
 .github
 .nvmrc
 .prettierrc.json

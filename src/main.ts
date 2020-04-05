@@ -25,12 +25,18 @@ try {
     galaxyConfigFile,
     collectionLocation,
   );
-  const collection = new Collection({
-    config: galaxyConfig,
-    apiKey,
-    customDir: collectionLocation,
-    customVersion: maybeGalaxyVersion,
-  });
+  let collection: Collection;
+  try {
+    collection = new Collection({
+      config: galaxyConfig,
+      apiKey,
+      customDir: collectionLocation,
+      customVersion: maybeGalaxyVersion,
+    });
+  } catch (err) {
+    setFailed(err);
+    process.exit(ExitCodes.ValidationFailed);
+  }
 
   const validationErrors = validateSync(collection);
   if (validationErrors.length > 0) {

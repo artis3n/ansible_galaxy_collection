@@ -1,13 +1,16 @@
 import { IsNotEmpty } from 'class-validator';
 import { ExecOptions } from '@actions/exec/lib/interfaces';
 
-import { GalaxyConfig } from './types';
+import { CollectionInput } from './types';
 import { IsSemver } from './decorators';
+import { GalaxyConfig } from './GalaxyConfig';
 
 /**
  * An Ansible Galaxy Collection.
  */
 export class Collection {
+  // Keep these parameters in this class, not passed through to the GalaxyConfig, to avoid tight class coupling.
+  // Also, we can perform class-validator validations on the inputs this way.
   @IsNotEmpty()
   namespace: string;
   @IsNotEmpty()
@@ -15,17 +18,20 @@ export class Collection {
   @IsSemver({ message: '$value must be semver-compatible' })
   @IsNotEmpty()
   version: string;
-  private readonly customDir: string;
+  protected readonly customDir: string;
   @IsNotEmpty()
   readonly apiKey: string;
+  protected readonly config: GalaxyConfig;
 
   /**
    * Validation of input is handled by decorators.
    */
-  constructor(config: GalaxyConfig, apiKey: string, customDir: string, customVersion: string) {
+  constructor({ config, apiKey, customDir, customVersion }: CollectionInput) {
+    this.config = config;
+
     this.namespace = config.namespace || '';
     this.name = config.name || '';
-    this.version = customVersion !== '' ? customVersion : config.version || '';
+    this.version = this.applyCustomVersion(customVersion);
     this.apiKey = apiKey;
     this.customDir = customDir;
   }
@@ -39,6 +45,16 @@ export class Collection {
       return this.customDir;
     }
     return '';
+  }
+
+  protected applyCustomVersion(customVersion: string | undefined): string {
+    let version = this.config.version;
+    if (customVersion !== '') {
+      version = customVersion;
+      this.config.version = version;
+    }
+
+    return version || '';
   }
 
   /**

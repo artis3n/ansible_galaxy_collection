@@ -1,14 +1,15 @@
 import { debug as coreDebug, error as coreError, getInput, setFailed } from '@actions/core';
-import { safeLoad } from 'js-yaml';
-import { readFileSync } from 'fs';
 import { which } from '@actions/io';
 import { exec } from '@actions/exec';
 
-import { GalaxyConfig } from './types';
 import { Collection } from './Collection';
 import { ExitCodes } from './enums';
 import { validateSync } from 'class-validator';
 import { join } from 'path';
+import { GalaxyConfig } from './GalaxyConfig';
+import { safeLoad } from 'js-yaml';
+import { readFileSync } from 'fs';
+import { GalaxyConfigFile } from './types';
 
 try {
   const apiKey = getInput('api_key', { required: true });
@@ -20,13 +21,16 @@ try {
    */
   const galaxyConfigFile = getInput('galaxy_config_file');
 
-  let galaxyConfigFilePath = galaxyConfigFile;
-  if (collectionLocation.length > 0) {
-    galaxyConfigFilePath = join(collectionLocation, galaxyConfigFile);
-  }
-  const galaxyConfig: GalaxyConfig = safeLoad(readFileSync(galaxyConfigFilePath, 'utf8'));
-
-  const collection = new Collection(galaxyConfig, apiKey, collectionLocation, maybeGalaxyVersion);
+  const [galaxyConfigResolvedPath, galaxyConfig] = prepareConfig(
+    galaxyConfigFile,
+    collectionLocation,
+  );
+  const collection = new Collection({
+    config: galaxyConfig,
+    apiKey,
+    customDir: collectionLocation,
+    customVersion: maybeGalaxyVersion,
+  });
 
   const validationErrors = validateSync(collection);
   if (validationErrors.length > 0) {
@@ -39,6 +43,7 @@ try {
   }
 
   coreDebug(`Building collection ${collection}`);
+  galaxyConfig.commit(galaxyConfigResolvedPath);
   collection
     .publish(which, exec)
     .then(() => coreDebug(`Successfully published ${collection} to Ansible Galaxy.`))
@@ -48,4 +53,14 @@ try {
     });
 } catch (error) {
   setFailed(error.message);
+}
+
+function prepareConfig(configFileName: string, collectionLocation: string): [string, GalaxyConfig] {
+  let galaxyConfigFilePath = configFileName;
+  if (collectionLocation.length > 0) {
+    galaxyConfigFilePath = join(collectionLocation, configFileName);
+  }
+
+  const configContent: GalaxyConfigFile = safeLoad(readFileSync(galaxyConfigFilePath, 'utf8'));
+  return [galaxyConfigFilePath, new GalaxyConfig(configContent)];
 }

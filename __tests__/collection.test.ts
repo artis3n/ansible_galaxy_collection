@@ -1,11 +1,17 @@
-import { validate } from 'class-validator';
+import { validate, validateSync } from 'class-validator';
 import { gt } from 'semver';
 import { ExecOptions } from '@actions/exec/lib/interfaces';
 
 import { Collection } from '../src/Collection';
+import { GalaxyConfig } from '../src/GalaxyConfig';
 import { BuildCommand, PublishCommand } from '../src/enums';
 
 const fakeCollectionDir = 'fake_collection';
+const typicalGalaxyConfig = new GalaxyConfig({
+  namespace: 'test',
+  name: 'test',
+  version: '1.1.1',
+});
 
 /**
  * Stub the @actions/io 'which' command.
@@ -92,125 +98,109 @@ const buildExecStub = function(
 };
 
 describe('Collection', () => {
-  test('No errors with valid input', async () => {
-    const collection = new Collection(
-      {
-        namespace: 'test',
-        name: 'test',
-        version: '1.0.0',
-      },
-      'key',
-      '',
-      '',
-    );
-    const errors = await validate(collection);
+  test('No errors with valid input', () => {
+    const collection = new Collection({
+      config: typicalGalaxyConfig,
+      apiKey: 'key',
+      customDir: '',
+      customVersion: '',
+    });
+
+    const errors = validateSync(collection);
     expect(errors).toHaveLength(0);
   });
 
   test('Fails to validate a collection with invalid inputs', async () => {
-    const collection = new Collection(
-      {
+    const collection = new Collection({
+      config: new GalaxyConfig({
         namespace: '',
         name: '',
         version: '',
-      },
-      'key',
-      '',
-      '',
-    );
+      }),
+      apiKey: 'key',
+      customDir: '',
+      customVersion: '',
+    });
+
     const errors = await validate(collection);
     expect(errors).toHaveLength(3);
   });
 
   test('Fails to validate a non-semver string', async () => {
-    const collection = new Collection(
-      {
+    const collection = new Collection({
+      config: new GalaxyConfig({
         namespace: 'test',
         name: 'test',
         version: '1.2.a',
-      },
-      'key',
-      '',
-      '',
-    );
+      }),
+      apiKey: 'key',
+      customDir: '',
+      customVersion: '',
+    });
+
     const errors = await validate(collection);
     expect(errors).toHaveLength(1);
     expect(errors[0].constraints.isSemver).toEqual('1.2.a must be semver-compatible');
   });
 
   test('toString returns namespace, name, and version', () => {
-    const collection = new Collection(
-      {
-        namespace: 'test',
-        name: 'test',
-        version: '1.1.0',
-      },
-      'key',
-      '',
-      '',
-    );
-    expect(`${collection}`).toEqual('test-test-1.1.0');
+    const collection = new Collection({
+      config: typicalGalaxyConfig,
+      apiKey: 'key',
+      customDir: '',
+      customVersion: '',
+    });
+
+    expect(`${collection}`).toEqual('test-test-1.1.1');
   });
 
   test('publishes a collection', async () => {
-    const collection = new Collection(
-      {
-        namespace: 'test',
-        name: 'test',
-        version: '1.1.1',
-      },
-      'key',
-      '',
-      '',
-    );
+    const collection = new Collection({
+      config: typicalGalaxyConfig,
+      apiKey: 'key',
+      customDir: '',
+      customVersion: '',
+    });
 
     const result = await collection.publish(whichStub, publishExecStub);
     expect(result).toEqual(0);
   });
 
   test('fails to publish a collection', async () => {
-    const collection = new Collection(
-      {
+    const collection = new Collection({
+      config: new GalaxyConfig({
         namespace: 'test',
         name: 'test',
         // This must be less than '1.1.0' to satisfy the stub expectations for this test
         version: '1.0.0',
-      },
-      'key',
-      '',
-      '',
-    );
+      }),
+      apiKey: 'key',
+      customDir: '',
+      customVersion: '',
+    });
 
     const result = await collection.publish(whichStub, publishExecStub);
     expect(result).toEqual(1);
   });
 
   test('path is empty if collectionDir is not specified', async () => {
-    const collection = new Collection(
-      {
-        namespace: 'test',
-        name: 'test',
-        version: '1.1.1',
-      },
-      'key',
-      '',
-      '',
-    );
+    const collection = new Collection({
+      config: typicalGalaxyConfig,
+      apiKey: 'key',
+      customDir: '',
+      customVersion: '',
+    });
 
     expect(collection.path).toEqual('');
   });
 
   test('builds a collection at a custom location', async () => {
-    const collection = new Collection(
-      {
-        namespace: 'test',
-        name: 'test',
-        version: '1.1.1',
-      },
-      'key',
-      fakeCollectionDir,
-      '',
-    );
+    const collection = new Collection({
+      config: typicalGalaxyConfig,
+      apiKey: 'key',
+      customDir: fakeCollectionDir,
+      customVersion: '',
+    });
 
     const result = await collection.publish(whichStub, buildExecStub);
     expect(result).toEqual(0);
@@ -218,31 +208,29 @@ describe('Collection', () => {
 
   test('overwrites the galaxy.yml version with a custom version', () => {
     const customVersion = '1.2.3';
-    const collection = new Collection(
-      {
-        namespace: 'test',
-        name: 'test',
-        version: '1.1.1',
-      },
-      'key',
-      '',
-      customVersion,
-    );
+    const collection = new Collection({
+      config: typicalGalaxyConfig,
+      apiKey: 'key',
+      customDir: '',
+      customVersion: customVersion,
+    });
+
     expect(collection.version).toEqual(customVersion);
   });
 
   test('retains the galaxy.yml version if not custom version is supplied', () => {
     const version = '1.1.1';
-    const collection = new Collection(
-      {
+    const collection = new Collection({
+      config: new GalaxyConfig({
         namespace: 'test',
         name: 'test',
         version: version,
-      },
-      'key',
-      '',
-      '',
-    );
+      }),
+      apiKey: 'key',
+      customDir: '',
+      customVersion: '',
+    });
+
     expect(collection.version).toEqual(version);
   });
 });

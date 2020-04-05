@@ -13,6 +13,11 @@ import { join } from 'path';
 try {
   const apiKey = getInput('api_key', { required: true });
   const collectionLocation: string = getInput('collection_dir');
+  // Will always be a string, but may be an empty string if the parameter is not defined
+  const maybeGalaxyVersion = getInput('galaxy_version');
+  /**
+   * @deprecated You probably want 'collection_dir,' not this parameter.
+   */
   const galaxyConfigFile = getInput('galaxy_config_file');
 
   let galaxyConfigFilePath = galaxyConfigFile;
@@ -21,7 +26,7 @@ try {
   }
   const galaxyConfig: GalaxyConfig = safeLoad(readFileSync(galaxyConfigFilePath, 'utf8'));
 
-  const collection = new Collection(galaxyConfig, apiKey, collectionLocation);
+  const collection = new Collection(galaxyConfig, apiKey, collectionLocation, maybeGalaxyVersion);
 
   const validationErrors = validateSync(collection);
   if (validationErrors.length > 0) {

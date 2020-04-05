@@ -27,10 +27,10 @@ class Collection {
     /**
      * Validation of input is handled by decorators.
      */
-    constructor(config, apiKey, customDir) {
+    constructor(config, apiKey, customDir, customVersion) {
         this.namespace = config.namespace || '';
         this.name = config.name || '';
-        this.version = config.version || '';
+        this.version = customVersion !== '' ? customVersion : config.version || '';
         this.apiKey = apiKey;
         this.customDir = customDir;
     }
@@ -38,7 +38,7 @@ class Collection {
         return `${this.namespace}-${this.name}-${this.version}`;
     }
     get path() {
-        if (this.customDir && this.customDir.length > 0) {
+        if (this.customDir.length > 0) {
             return this.customDir;
         }
         return '';

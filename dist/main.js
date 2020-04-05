@@ -12,13 +12,18 @@ const path_1 = require("path");
 try {
     const apiKey = core_1.getInput('api_key', { required: true });
     const collectionLocation = core_1.getInput('collection_dir');
+    // Will always be a string, but may be an empty string if the parameter is not defined
+    const maybeGalaxyVersion = core_1.getInput('galaxy_version');
+    /**
+     * @deprecated You probably want 'collection_dir,' not this parameter.
+     */
     const galaxyConfigFile = core_1.getInput('galaxy_config_file');
     let galaxyConfigFilePath = galaxyConfigFile;
     if (collectionLocation.length > 0) {
         galaxyConfigFilePath = path_1.join(collectionLocation, galaxyConfigFile);
     }
     const galaxyConfig = js_yaml_1.safeLoad(fs_1.readFileSync(galaxyConfigFilePath, 'utf8'));
-    const collection = new Collection_1.Collection(galaxyConfig, apiKey, collectionLocation);
+    const collection = new Collection_1.Collection(galaxyConfig, apiKey, collectionLocation, maybeGalaxyVersion);
     const validationErrors = class_validator_1.validateSync(collection);
     if (validationErrors.length > 0) {
         const errorMessages = validationErrors.map(error => error.constraints);

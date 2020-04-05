@@ -19,6 +19,13 @@ inputs:
   galaxy_version_commit:
     description: The Action will write the `galaxy_version` value into your `galaxy.yml` and commit it.
     required: false
+  galaxy_version_increment:
+    description: |
+      The Action will read the version in galaxy.yml and increment it based on the value provided in this parameter.
+      Valid values are: `major`, `minor`, `patch`.
+      Defaults to `patch`.
+    required: false
+    default: patch
   galaxy_config_file:
     description: |
       A collection must have a galaxy.yml file that contains the necessary information to build a

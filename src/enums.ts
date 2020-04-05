@@ -3,3 +3,11 @@ export enum ExitCodes {
   DeployFailed,
   ValidationFailed,
 }
+
+export enum PublishCommand {
+  Executable,
+  Collection,
+  Command,
+  Archive,
+  ApiKeyFlag,
+}

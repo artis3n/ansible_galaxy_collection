@@ -6,3 +6,11 @@ var ExitCodes;
     ExitCodes[ExitCodes["DeployFailed"] = 1] = "DeployFailed";
     ExitCodes[ExitCodes["ValidationFailed"] = 2] = "ValidationFailed";
 })(ExitCodes = exports.ExitCodes || (exports.ExitCodes = {}));
+var PublishCommand;
+(function (PublishCommand) {
+    PublishCommand[PublishCommand["Executable"] = 0] = "Executable";
+    PublishCommand[PublishCommand["Collection"] = 1] = "Collection";
+    PublishCommand[PublishCommand["Command"] = 2] = "Command";
+    PublishCommand[PublishCommand["Archive"] = 3] = "Archive";
+    PublishCommand[PublishCommand["ApiKeyFlag"] = 4] = "ApiKeyFlag";
+})(PublishCommand = exports.PublishCommand || (exports.PublishCommand = {}));

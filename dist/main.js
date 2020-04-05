@@ -3,6 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@actions/core");
 const js_yaml_1 = require("js-yaml");
 const fs_1 = require("fs");
+const io_1 = require("@actions/io");
+const exec_1 = require("@actions/exec");
 const Collection_1 = require("./Collection");
 const enums_1 = require("./enums");
 const class_validator_1 = require("class-validator");
@@ -20,7 +22,7 @@ try {
     }
     core_1.debug(`Building collection ${collection}`);
     collection
-        .build()
+        .publish(io_1.which, exec_1.exec)
         .then(() => core_1.debug(`Successfully published ${collection} to Ansible Galaxy.`))
         .catch(({ message }) => {
         core_1.setFailed(message);

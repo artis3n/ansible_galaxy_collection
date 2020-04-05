@@ -1,6 +1,8 @@
 import { debug as coreDebug, error as coreError, getInput, setFailed } from '@actions/core';
 import { safeLoad } from 'js-yaml';
 import { readFileSync } from 'fs';
+import { which } from '@actions/io';
+import { exec } from '@actions/exec';
 
 import { GalaxyConfig } from './types';
 import { Collection } from './Collection';
@@ -26,7 +28,7 @@ try {
 
   coreDebug(`Building collection ${collection}`);
   collection
-    .build()
+    .publish(which, exec)
     .then(() => coreDebug(`Successfully published ${collection} to Ansible Galaxy.`))
     .catch(({ message }: Error) => {
       setFailed(message);

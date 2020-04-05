@@ -1,6 +1,5 @@
 import { IsNotEmpty } from 'class-validator';
-import { which } from '@actions/io';
-import { exec } from '@actions/exec';
+import { ExecOptions } from '@actions/exec/lib/interfaces';
 
 import { GalaxyConfig } from './types';
 import { IsSemver } from './decorators';
@@ -27,9 +26,17 @@ export class Collection {
     return `${this.namespace}-${this.name}-${this.version}`;
   }
 
-  async build() {
+  /**
+   * Publishes a Collection to Ansible Galaxy.
+   * @param which
+   * @param exec
+   */
+  async publish(
+    which: (tool: string, check?: boolean | undefined) => Promise<string>,
+    exec: (commandLine: string, args?: string[], options?: ExecOptions) => Promise<number>,
+  ): Promise<number> {
     const galaxyCommandPath = await which('ansible-galaxy', true);
     await exec(`${galaxyCommandPath} collection build`);
-    await exec(`${galaxyCommandPath} collection publish ${this}.tar.gz --api-key=${this.apiKey}`);
+    return exec(`${galaxyCommandPath} collection publish ${this}.tar.gz --api-key=${this.apiKey}`);
   }
 }

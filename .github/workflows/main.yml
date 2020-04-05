@@ -26,7 +26,7 @@ jobs:
 
       - name: Test the action
         uses: ./
-        # Fake location that's a small amount of content
-        working-directory: fake_resource
         with:
           api_key: '${{ secrets.GALAXY_API_KEY }}'
+          # Fake location that's a small amount of content
+          collection_dir: 'fake_resource'

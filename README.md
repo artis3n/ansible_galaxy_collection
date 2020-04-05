@@ -25,7 +25,7 @@ An example workflow using this action can be found [here](https://github.com/art
 
 This should be stored in a Secret on GitHub. See [Creating and Using Secrets Encrypted Variables](https://help.github.com/en/github/automating-your-workflow-with-github-actions/virtual-environments-for-github-actions#creating-and-using-secrets-encrypted-variables).
 
-### collection_dir (TBA)
+### collection_dir
 
 **Default**: `./`
 

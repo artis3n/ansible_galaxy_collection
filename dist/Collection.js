@@ -20,26 +20,39 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const class_validator_1 = require("class-validator");
 const decorators_1 = require("./decorators");
+/**
+ * An Ansible Galaxy Collection.
+ */
 class Collection {
-    constructor(config, apiKey) {
-        this.version = '';
+    /**
+     * Validation of input is handled by decorators.
+     */
+    constructor(config, apiKey, customDir) {
         this.namespace = config.namespace || '';
         this.name = config.name || '';
         this.version = config.version || '';
         this.apiKey = apiKey;
+        this.customDir = customDir;
     }
     toString() {
         return `${this.namespace}-${this.name}-${this.version}`;
     }
+    get path() {
+        if (this.customDir && this.customDir.length > 0) {
+            return this.customDir;
+        }
+        return '';
+    }
     /**
      * Publishes a Collection to Ansible Galaxy.
-     * @param which
-     * @param exec
+     * @param which Either which from @actions/io or an injected stub for testing
+     * @param exec Either exec from @actions/exec or an injected stub for testing
      */
     publish(which, exec) {
         return __awaiter(this, void 0, void 0, function* () {
             const galaxyCommandPath = yield which('ansible-galaxy', true);
-            yield exec(`${galaxyCommandPath} collection build`);
+            // If a custom directory is passed in, use that. Otherwise, do not specify a custom location.
+            yield exec(`${galaxyCommandPath} collection build ${this.path}`);
             return exec(`${galaxyCommandPath} collection publish ${this}.tar.gz --api-key=${this.apiKey}`);
         });
     }

@@ -14,15 +14,15 @@ Deploy a Collection to Ansible Galaxy.
 
 This action expects to be run from a repository with certain met conditions.
 
-1. The repository is an Ansible Galaxy Collection, meaning it contains a `galaxy.yml` file.
+1. The repository contains a valid Ansible Galaxy Collection, meaning it minimally contains a `galaxy.yml` file and a `README.md`.
 
-An example workflow using this action can be found [here](https://github.com/artis3n/ansible-collection-github/blob/master/.github/workflows/deploy.yml).
+An example workflow using this action can be found [here](https://github.com/artis3n/ansible-collection-github/blob/master/.github/workflows/deploy.yml) and in [the tests](.github/workflows/main.yml).
 
 ## Inputs
 
 ### api_key
 
-**Required** Ansible Galaxy API key.
+**Required**: Ansible Galaxy API key.
 
 This should be stored in a Secret on GitHub. See [Creating and Using Secrets Encrypted Variables](https://help.github.com/en/github/automating-your-workflow-with-github-actions/virtual-environments-for-github-actions#creating-and-using-secrets-encrypted-variables).
 

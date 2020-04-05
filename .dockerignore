@@ -2,7 +2,7 @@
 .dockerignore
 node_modules
 src
-galaxy.yml
+fake_resource
 .github
 .nvmrc
 .prettierrc.json

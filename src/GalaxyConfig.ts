@@ -30,6 +30,8 @@ export class GalaxyConfig {
     if (valid(input)) {
       this.config.version = input;
       this.changes = true;
+    } else {
+      throw new Error(`${input} is not valid semver`);
     }
   }
 

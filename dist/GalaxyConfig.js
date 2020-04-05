@@ -25,6 +25,9 @@ class GalaxyConfig {
             this.config.version = input;
             this.changes = true;
         }
+        else {
+            throw new Error(`${input} is not valid semver`);
+        }
     }
     /**
      * Writes this config back into its original file if changes have occurred to its contents.

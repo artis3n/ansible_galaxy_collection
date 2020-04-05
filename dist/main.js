@@ -20,12 +20,19 @@ try {
      */
     const galaxyConfigFile = core_1.getInput('galaxy_config_file');
     const [galaxyConfigResolvedPath, galaxyConfig] = prepareConfig(galaxyConfigFile, collectionLocation);
-    const collection = new Collection_1.Collection({
-        config: galaxyConfig,
-        apiKey,
-        customDir: collectionLocation,
-        customVersion: maybeGalaxyVersion,
-    });
+    let collection;
+    try {
+        collection = new Collection_1.Collection({
+            config: galaxyConfig,
+            apiKey,
+            customDir: collectionLocation,
+            customVersion: maybeGalaxyVersion,
+        });
+    }
+    catch (err) {
+        core_1.setFailed(err);
+        process.exit(enums_1.ExitCodes.ValidationFailed);
+    }
     const validationErrors = class_validator_1.validateSync(collection);
     if (validationErrors.length > 0) {
         const errorMessages = validationErrors.map(error => error.constraints);

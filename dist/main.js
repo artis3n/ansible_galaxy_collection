@@ -1,14 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@actions/core");
-const js_yaml_1 = require("js-yaml");
-const fs_1 = require("fs");
 const io_1 = require("@actions/io");
 const exec_1 = require("@actions/exec");
 const Collection_1 = require("./Collection");
 const enums_1 = require("./enums");
 const class_validator_1 = require("class-validator");
 const path_1 = require("path");
+const GalaxyConfig_1 = require("./GalaxyConfig");
+const js_yaml_1 = require("js-yaml");
+const fs_1 = require("fs");
 try {
     const apiKey = core_1.getInput('api_key', { required: true });
     const collectionLocation = core_1.getInput('collection_dir');
@@ -18,12 +19,13 @@ try {
      * @deprecated You probably want 'collection_dir,' not this parameter.
      */
     const galaxyConfigFile = core_1.getInput('galaxy_config_file');
-    let galaxyConfigFilePath = galaxyConfigFile;
-    if (collectionLocation.length > 0) {
-        galaxyConfigFilePath = path_1.join(collectionLocation, galaxyConfigFile);
-    }
-    const galaxyConfig = js_yaml_1.safeLoad(fs_1.readFileSync(galaxyConfigFilePath, 'utf8'));
-    const collection = new Collection_1.Collection(galaxyConfig, apiKey, collectionLocation, maybeGalaxyVersion);
+    const [galaxyConfigResolvedPath, galaxyConfig] = prepareConfig(galaxyConfigFile, collectionLocation);
+    const collection = new Collection_1.Collection({
+        config: galaxyConfig,
+        apiKey,
+        customDir: collectionLocation,
+        customVersion: maybeGalaxyVersion,
+    });
     const validationErrors = class_validator_1.validateSync(collection);
     if (validationErrors.length > 0) {
         const errorMessages = validationErrors.map(error => error.constraints);
@@ -32,6 +34,7 @@ try {
         process.exit(enums_1.ExitCodes.ValidationFailed);
     }
     core_1.debug(`Building collection ${collection}`);
+    galaxyConfig.commit(galaxyConfigResolvedPath);
     collection
         .publish(io_1.which, exec_1.exec)
         .then(() => core_1.debug(`Successfully published ${collection} to Ansible Galaxy.`))
@@ -42,4 +45,12 @@ try {
 }
 catch (error) {
     core_1.setFailed(error.message);
+}
+function prepareConfig(configFileName, collectionLocation) {
+    let galaxyConfigFilePath = configFileName;
+    if (collectionLocation.length > 0) {
+        galaxyConfigFilePath = path_1.join(collectionLocation, configFileName);
+    }
+    const configContent = js_yaml_1.safeLoad(fs_1.readFileSync(galaxyConfigFilePath, 'utf8'));
+    return [galaxyConfigFilePath, new GalaxyConfig_1.GalaxyConfig(configContent)];
 }

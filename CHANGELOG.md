@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Any unreleased changes will be included here.
 
+## [2.2.0] - 2020-04-05
+
+### Added
+
+- Added the `galaxy_version` input parameter to allow you to pass in a semver-compatible string, which will be used for publishing the collection.
+
 ## [2.1.1] - 2020-04-05
 
 ### Fixed

@@ -25,7 +25,7 @@ An example workflow using this action can be found [here](https://github.com/art
 
 This should be stored in a Secret on GitHub. See [Creating and Using Secrets Encrypted Variables](https://help.github.com/en/github/automating-your-workflow-with-github-actions/virtual-environments-for-github-actions#creating-and-using-secrets-encrypted-variables).
 
-### collection_dir
+### collection_dir (TBA)
 
 **Default**: `./`
 
@@ -37,11 +37,22 @@ Semver-compatible string: `1`, `1.1`, `1.1.1`
 
 Dynamically inject a semver-compatible version into your `galaxy_config_file`.
 
-### galaxy_version_commit
+This parameter is not compatible with the `galaxy_version_increment` parameter.
+
+### galaxy_version_commit (TBA)
 
 Values: `true`/`false`
 
 The Action will write the `galaxy_version` value into your `galaxy.yml` and commit it.
+
+### galaxy_version_increment (TBA)
+
+Values: `major`/`minor`/`patch`
+Default: `patch`
+
+The Action will read the version in galaxy.yml and increment it based on the value provided in this parameter.
+
+This parameter is not compatible with the `galaxy_version` parameter.
 
 ### galaxy_config_file
 
@@ -51,12 +62,16 @@ A collection must have a galaxy.yml file that contains the necessary information
 
 ## Example Usage
 
+Default usage:
+
 ```yaml
 - name: Build and Deploy Collection
   uses: artis3n/ansible_galaxy_collection@v2
   with:
     api_key: '${{ secrets.GALAXY_API_KEY }}'
 ```
+
+Pass in `galaxy.yml` version as an input parameter:
 
 ```yaml
 - name: Get the version from the tag
@@ -68,6 +83,8 @@ A collection must have a galaxy.yml file that contains the necessary information
     api_key: '${{ secrets.GALAXY_API_KEY }}'
     galaxy_version: '$VERSION'
 ```
+
+If your Collection is not in your repo root:
 
 ```yaml
 - name: When the Collection is not in the project root
@@ -82,5 +99,5 @@ A collection must have a galaxy.yml file that contains the necessary information
 - `0`: `Ok`
 - `1`: `DeployFailed`
     - The Action attempted to deploy to Ansible Galaxy, but failed.
-- `2`: `MissingSemver`
-    - The Collection version, from either the `galaxy_config_file` file or the `galaxy_version`, is not valid semver.
+- `2`: `ValidationFailed`
+    - One or more user-supplied input parameters were invalid. See the error message for validation details.

@@ -14,7 +14,8 @@ RUN apt-get update \
 RUN pip3 install --upgrade pip ansible
 
 COPY dist/ dist/
-COPY package*.json ./
+COPY package.json ./
+COPY package-lock.json ./
 RUN npm install --production
 
 ENTRYPOINT ["node", "dist/main.js"]

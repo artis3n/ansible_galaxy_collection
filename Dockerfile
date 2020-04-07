@@ -1,4 +1,4 @@
-FROM node:13-slim
+FROM node:12-slim
 
 # Required for python inside Docker containers
 ENV LC_ALL C.UTF-8

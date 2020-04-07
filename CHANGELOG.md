@@ -8,11 +8,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Any unreleased changes will be included here.
 
+### Fixes
+
+- Bug in `2.2.0` prevented the Action from building correctly. Details TBA.
+
 ## [2.2.0] - 2020-04-05
 
 ### Added
 
-- Added the `galaxy_version` input parameter to allow you to pass in a semver-compatible string, which will be used for publishing the collection.
+- Added the `galaxy_version` input parameter to allow you to pass in a semver-compatible string, which will be used for publishing the collection. Resolves [#49](https://github.com/artis3n/ansible_galaxy_collection/issues/49).
 
 ## [2.1.1] - 2020-04-05
 

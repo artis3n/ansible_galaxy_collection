@@ -8,9 +8,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Any unreleased changes will be included here.
 
-### Fixes
+## [2.2.1] - 2020-04-07
 
-- Bug in `2.2.0` prevented the Action from building correctly. Details TBA.
+### Fixed
+
+- [#54](https://github.com/artis3n/ansible_galaxy_collection/issues/54) revealed that, as of at least `2.2.0`, GitHub Actions fails to build the image on master. There appeared to be 2 issues.
+  - `COPY package*.json` did not appear to copy both `package.json` and `package-lock.json` as expected, so those were broken out into 2 explicit `COPY` commands.
+  - The Actions runner fails to locate the entrypoint script. This was attributed to using `node:13-slim` in the Dockerfile while the Actions runners only support `12.x`. Moving the Dockerfile to `node:12-slim` resolved this.
+
+### Changed
+
+- Moved the Docker image from `node:13-slim` to `node:12-slim` due to the reasons described under 'Fixed.'
 
 ## [2.2.0] - 2020-04-05
 

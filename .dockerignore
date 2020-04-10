@@ -1,10 +1,12 @@
 .dockerignore
 .git
 .github
+.gitignore
 .idea
 .nvmrc
 .prettierrc.json
 CHANGELOG.md
+Dockerfile
 fake_collection
 jest.config.js
 node_modules

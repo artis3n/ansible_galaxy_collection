@@ -16,8 +16,4 @@ RUN pip3 install ansible
 COPY . .
 RUN npm install --production
 
-RUN echo $PWD
-RUN ls -la ./
-RUN which node
-
-ENTRYPOINT ["node", "dist/main.js"]
+ENTRYPOINT ["node", "/dist/main.js"]

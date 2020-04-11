@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Moved the Docker image from `node:13-slim` to `node:12-slim` due to the reasons described under 'Fixed.'
+- Moved the Docker image from `node:13-slim` to `node:12-slim` to keep the project on the LTS version of node.
 
 ## [2.2.0] - 2020-04-05
 

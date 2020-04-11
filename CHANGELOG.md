@@ -8,11 +8,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Any unreleased changes will be included here.
 
+## [2.2.1] - 2020-04-010
+
+### Fixed
+
+- [#54](https://github.com/artis3n/ansible_galaxy_collection/issues/54) revealed that, as of at least `2.2.0`, GitHub Actions fails to build the image on master. There appeared to be 2 issues.
+  - `COPY package*.json` did not appear to copy both `package.json` and `package-lock.json` as expected, so the `COPY` was reverted to a `COPY . .` and a `.dockerignore` is used to keep out all files we don't need.
+  - The Actions runner fails to locate the entrypoint script. I believe this is a bug with GitHub Actions as the Actions runners sets a default `WORKDIR` but does not appear to be following Docker's documentation on applying the `WORKDIR` to `COPY` and `RUN` commands.
+    - I have filed a bug about this, but it was marked as spam :). Trying to get it unflagged. It is submitted [here](https://github.community/t5/GitHub-Actions/GITHUB-WORKSPACE-not-setting-WORKDIR-correctly/m-p/53525#M8863).
+
+### Changed
+
+- Moved the Docker image from `node:13-slim` to `node:12-slim` to keep the project on the LTS version of node.
+
 ## [2.2.0] - 2020-04-05
 
 ### Added
 
-- Added the `galaxy_version` input parameter to allow you to pass in a semver-compatible string, which will be used for publishing the collection.
+- Added the `galaxy_version` input parameter to allow you to pass in a semver-compatible string, which will be used for publishing the collection. Resolves [#49](https://github.com/artis3n/ansible_galaxy_collection/issues/49).
 
 ## [2.1.1] - 2020-04-05
 

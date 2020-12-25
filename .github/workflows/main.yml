@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2.1.4
         with:
           node-version: '14.x'
 
@@ -38,4 +38,4 @@ jobs:
           # Fake location that's a small amount of content
           collection_dir: 'fake_collection'
           # Custom version
-          galaxy_version: '0.1.10-test'
+          galaxy_version: '0.1.13-test'

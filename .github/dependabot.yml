@@ -1,0 +1,29 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: '/'
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 10
+    reviewers:
+      - artis3n
+    assignees:
+      - artis3n
+    commit-message:
+      prefix: fix
+      prefix-development: chore
+      include: scope
+
+  - package-ecosystem: github-actions
+    directory: '/'
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+    reviewers:
+      - artis3n
+    assignees:
+      - artis3n
+    commit-message:
+      prefix: fix
+      prefix-development: chore
+      include: scope

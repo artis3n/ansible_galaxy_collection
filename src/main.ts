@@ -64,7 +64,7 @@ try {
 function prepareConfig(configFileName: string, collectionLocation: string): [string, GalaxyConfig] {
   let galaxyConfigFilePath = configFileName;
   if (collectionLocation.length > 0) {
-    galaxyConfigFilePath = join(collectionLocation, configFileName);
+    galaxyConfigFilePath = join(__dirname, collectionLocation, configFileName);
   }
 
   const configContent: GalaxyConfigFile = safeLoad(readFileSync(galaxyConfigFilePath, 'utf8'));

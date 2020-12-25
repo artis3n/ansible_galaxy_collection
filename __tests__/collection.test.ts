@@ -140,7 +140,7 @@ describe('Collection', () => {
 
     const errors = await validate(collection);
     expect(errors).toHaveLength(1);
-    expect(errors[0].constraints.isSemver).toEqual('1.2.a must be semver-compatible');
+    expect(errors[0].constraints!.isSemver).toEqual('1.2.a must be semver-compatible');
   });
 
   test('toString returns namespace, name, and version', () => {

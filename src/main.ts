@@ -21,10 +21,7 @@ try {
    */
   const galaxyConfigFile = getInput('galaxy_config_file');
 
-  const [galaxyConfigResolvedPath, galaxyConfig] = prepareConfig(
-    galaxyConfigFile,
-    collectionLocation,
-  );
+  const [galaxyConfigResolvedPath, galaxyConfig] = prepareConfig(galaxyConfigFile, collectionLocation);
   let collection: Collection;
   try {
     collection = new Collection({
@@ -42,9 +39,7 @@ try {
   if (validationErrors.length > 0) {
     const errorMessages = validationErrors.map(error => error.constraints);
     errorMessages.forEach(error => coreError(JSON.stringify(error)));
-    setFailed(
-      'This action encountered validation failures. Inspect the output for all validation errors.',
-    );
+    setFailed('This action encountered validation failures. Inspect the output for all validation errors.');
     process.exit(ExitCodes.ValidationFailed);
   }
 

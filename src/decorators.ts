@@ -2,7 +2,7 @@ import { registerDecorator, ValidationOptions, ValidationArguments } from 'class
 import { valid } from 'semver';
 
 export function IsSemver(validationOptions?: ValidationOptions) {
-  return function (object: Object, propertyName: string) {
+  return function(object: Object, propertyName: string) {
     registerDecorator({
       name: 'isSemver',
       target: object.constructor,

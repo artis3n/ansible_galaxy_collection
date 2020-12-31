@@ -17,7 +17,7 @@ const typicalGalaxyConfig = new GalaxyConfig({
  * Stub the @actions/io 'which' command.
  * We just have it return the tool that is passed in.
  */
-const whichStub = function(tool: string, _check?: boolean | undefined): Promise<string> {
+const whichStub = function (tool: string, _check?: boolean | undefined): Promise<string> {
   return new Promise(resolve => resolve(tool));
 };
 
@@ -28,7 +28,7 @@ const whichStub = function(tool: string, _check?: boolean | undefined): Promise<
  * In this version of the stub, the 'ansible-galaxy collection publish' command is inspected.
  * We verify that the command has been formatted properly.
  */
-const publishExecStub = function(commandLine: string, _args?: string[], _options?: ExecOptions): Promise<number> {
+const publishExecStub = function (commandLine: string, _args?: string[], _options?: ExecOptions): Promise<number> {
   return new Promise(resolve => {
     const commandArgs = commandLine.split(' ');
     const executable = commandArgs[PublishCommand.Executable];
@@ -71,7 +71,7 @@ const publishExecStub = function(commandLine: string, _args?: string[], _options
  * In this version of the stub, the 'ansible-galaxy collection build' command is inspected.
  * We verify that the code constructs the command properly based on the existence/formatting of input variables.
  */
-const buildExecStub = function(commandLine: string, _args?: string[], _options?: ExecOptions): Promise<number> {
+const buildExecStub = function (commandLine: string, _args?: string[], _options?: ExecOptions): Promise<number> {
   return new Promise(resolve => {
     const commandArgs = commandLine.split(' ');
     const command = commandArgs[BuildCommand.Command];

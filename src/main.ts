@@ -62,6 +62,6 @@ function prepareConfig(configFileName: string, collectionLocation: string): [str
     galaxyConfigFilePath = join(collectionLocation, configFileName);
   }
 
-  const configContent: GalaxyConfigFile = safeLoad(readFileSync(galaxyConfigFilePath, 'utf8'));
+  const configContent: GalaxyConfigFile = safeLoad(readFileSync(galaxyConfigFilePath, 'utf8')) as GalaxyConfigFile;
   return [galaxyConfigFilePath, new GalaxyConfig(configContent)];
 }

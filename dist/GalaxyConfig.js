@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.GalaxyConfig = void 0;
 const semver_1 = require("semver");
 const js_yaml_1 = require("js-yaml");
 const fs_1 = require("fs");

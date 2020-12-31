@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.BuildCommand = exports.PublishCommand = exports.ExitCodes = void 0;
 var ExitCodes;
 (function (ExitCodes) {
     ExitCodes[ExitCodes["Ok"] = 0] = "Ok";

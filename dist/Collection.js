@@ -8,16 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Collection = void 0;
 const class_validator_1 = require("class-validator");
 const decorators_1 = require("./decorators");
 /**
@@ -57,13 +49,11 @@ class Collection {
      * @param which Either which from @actions/io or an injected stub for testing
      * @param exec Either exec from @actions/exec or an injected stub for testing
      */
-    publish(which, exec) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const galaxyCommandPath = yield which('ansible-galaxy', true);
-            // If a custom directory is passed in, use that. Otherwise, do not specify a custom location.
-            yield exec(`${galaxyCommandPath} collection build ${this.path}`);
-            return exec(`${galaxyCommandPath} collection publish ${this}.tar.gz --api-key=${this.apiKey}`);
-        });
+    async publish(which, exec) {
+        const galaxyCommandPath = await which('ansible-galaxy', true);
+        // If a custom directory is passed in, use that. Otherwise, do not specify a custom location.
+        await exec(`${galaxyCommandPath} collection build ${this.path}`);
+        return exec(`${galaxyCommandPath} collection publish ${this}.tar.gz --api-key=${this.apiKey}`);
     }
 }
 __decorate([

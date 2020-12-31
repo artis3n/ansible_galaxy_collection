@@ -2,7 +2,7 @@
 
 namespace: artis3n
 name: test_resource_do_not_use
-version: 2.1.9
+version: 2.1.22
 readme: README.md
 authors:
   - Ari Kalfus (@artis3n) <dev@artis3nal.com>

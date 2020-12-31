@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Semver release
-        uses: technote-space/release-github-actions@v3
+        uses: technote-space/release-github-actions@v6.2.7
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -25,7 +25,7 @@ jobs:
         run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF/refs\/tags\//}
 
       - name: Deploy to GitHub Package Registry
-        uses: elgohr/Publish-Docker-Github-Action@b2f63259b466ca5a4be395c392546de447450334 # 2.14
+        uses: elgohr/Publish-Docker-Github-Action@f7aca2fea76a5218f3c76cd5933c3ba1d8008774 # 3.0.2
         with:
           name: artis3n/ansible_galaxy_collection/runtime
           username: ${{ github.actor }}
@@ -35,7 +35,7 @@ jobs:
           tags: "latest,${{ env.RELEASE_VERSION }}"
 
       - name: Deploy to Docker Hub
-        uses: elgohr/Publish-Docker-Github-Action@b2f63259b466ca5a4be395c392546de447450334 # 2.14
+        uses: elgohr/Publish-Docker-Github-Action@f7aca2fea76a5218f3c76cd5933c3ba1d8008774 # 3.0.2
         with:
           name: artis3n/ansible_galaxy_collection
           username: ${{ secrets.docker_username }}

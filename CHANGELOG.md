@@ -8,6 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Any unreleased changes will be included here.
 
+## [2.2.2] - 2020-12-31
+
+### Changed
+
+- NPM dependency updates
+- Dockerfile now builds from `node:14-slim`
+
 ## [2.2.1] - 2020-04-010
 
 ### Fixed
@@ -16,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `COPY package*.json` did not appear to copy both `package.json` and `package-lock.json` as expected, so the `COPY` was reverted to a `COPY . .` and a `.dockerignore` is used to keep out all files we don't need.
   - The Actions runner fails to locate the entrypoint script. I believe this is a bug with GitHub Actions as the Actions runners sets a default `WORKDIR` but does not appear to be following Docker's documentation on applying the `WORKDIR` to `COPY` and `RUN` commands.
     - I have filed a bug about this, but it was marked as spam :). Trying to get it unflagged. It is submitted [here](https://github.community/t5/GitHub-Actions/GITHUB-WORKSPACE-not-setting-WORKDIR-correctly/m-p/53525#M8863).
+    - [update 2020-12-31]: This is resolved, action workflows now support the 'uses: ./' syntax.
 
 ### Changed
 

@@ -28,7 +28,7 @@
     "@actions/core": "^1.2.6",
     "@actions/exec": "^1.0.4",
     "@actions/io": "^1.0.2",
-    "class-validator": "^0.12.2",
+    "class-validator": "^0.13.1",
     "js-yaml": "^3.14.1",
     "semver": "^7.3.4"
   },

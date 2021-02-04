@@ -58,6 +58,6 @@ function prepareConfig(configFileName, collectionLocation) {
     if (collectionLocation.length > 0) {
         galaxyConfigFilePath = path_1.join(collectionLocation, configFileName);
     }
-    const configContent = js_yaml_1.safeLoad(fs_1.readFileSync(galaxyConfigFilePath, 'utf8'));
+    const configContent = js_yaml_1.load(fs_1.readFileSync(galaxyConfigFilePath, 'utf8'));
     return [galaxyConfigFilePath, new GalaxyConfig_1.GalaxyConfig(configContent)];
 }

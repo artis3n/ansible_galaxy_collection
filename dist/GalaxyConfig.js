@@ -35,7 +35,7 @@ class GalaxyConfig {
      */
     commit(filePath) {
         if (this.changes) {
-            const yamlAsString = js_yaml_1.safeDump(this.config);
+            const yamlAsString = js_yaml_1.dump(this.config);
             fs_1.writeFileSync(filePath, yamlAsString, 'utf8');
         }
     }

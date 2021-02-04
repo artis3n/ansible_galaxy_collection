@@ -1,6 +1,6 @@
 import { valid } from 'semver';
 import { GalaxyConfigFile } from './types';
-import { safeDump } from 'js-yaml';
+import { dump as yamlDump } from 'js-yaml';
 import { writeFileSync } from 'fs';
 
 /**
@@ -40,7 +40,7 @@ export class GalaxyConfig {
    */
   commit(filePath: string) {
     if (this.changes) {
-      const yamlAsString = safeDump(this.config);
+      const yamlAsString = yamlDump(this.config);
       writeFileSync(filePath, yamlAsString, 'utf8');
     }
   }

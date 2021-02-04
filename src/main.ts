@@ -7,7 +7,7 @@ import { ExitCodes } from './enums';
 import { validateSync } from 'class-validator';
 import { join } from 'path';
 import { GalaxyConfig } from './GalaxyConfig';
-import { safeLoad } from 'js-yaml';
+import { load as yamlLoad } from 'js-yaml';
 import { readFileSync } from 'fs';
 import { GalaxyConfigFile } from './types';
 
@@ -62,6 +62,6 @@ function prepareConfig(configFileName: string, collectionLocation: string): [str
     galaxyConfigFilePath = join(collectionLocation, configFileName);
   }
 
-  const configContent: GalaxyConfigFile = safeLoad(readFileSync(galaxyConfigFilePath, 'utf8')) as GalaxyConfigFile;
+  const configContent: GalaxyConfigFile = yamlLoad(readFileSync(galaxyConfigFilePath, 'utf8')) as GalaxyConfigFile;
   return [galaxyConfigFilePath, new GalaxyConfig(configContent)];
 }

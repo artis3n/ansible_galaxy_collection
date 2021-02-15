@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Semver release
-        uses: technote-space/release-github-actions@v6.2.7
+        uses: technote-space/release-github-actions@v7.0.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

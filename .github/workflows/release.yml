@@ -22,7 +22,7 @@ jobs:
 
       - name: Get the version
         id: get_version
-        run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF/refs\/tags\//}
+        run: echo "RELEASE_VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
 
       - name: Deploy to GitHub Package Registry
         uses: elgohr/Publish-Docker-Github-Action@f7aca2fea76a5218f3c76cd5933c3ba1d8008774 # 3.0.2

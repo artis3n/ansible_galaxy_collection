@@ -2,8 +2,7 @@
 
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/artis3n/ansible_galaxy_collection/Testing%20the%20Action)](https://github.com/artis3n/ansible_galaxy_collection/actions)
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/artis3n/ansible_galaxy_collection)](https://github.com/artis3n/ansible_galaxy_collection/releases)
-![GitHub last commit](https://img.shields.io/github/last-commit/artis3n/kali-artis3n)
-[![Maintainability](https://api.codeclimate.com/v1/badges/e0c4d42921dff7021740/maintainability)](https://codeclimate.com/github/artis3n/ansible_galaxy_collection/maintainability)
+![GitHub last commit](https://img.shields.io/github/last-commit/artis3n/ansible_galaxy_collection)
 ![GitHub](https://img.shields.io/github/license/artis3n/ansible_galaxy_collection)
 [![GitHub followers](https://img.shields.io/github/followers/artis3n?style=social)](https://github.com/artis3n/)
 [![Twitter Follow](https://img.shields.io/twitter/follow/artis3n?style=social)](https://twitter.com/Artis3n)

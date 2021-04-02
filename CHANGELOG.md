@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Any unreleased changes will be included here.
 
+## [2.2.4] - 2021-04-01
+
+### Changed
+
+- NPM dependency updates
+
 ## [2.2.3] - 2021-02-03
 
 ### Changed

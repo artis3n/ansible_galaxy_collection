@@ -24,7 +24,9 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          npm install -g npm
+          npm ci
 
       - name: Check Format
         run: npm run format-check
@@ -46,4 +48,4 @@ jobs:
           # Fake location that's a small amount of content
           collection_dir: 'fake_collection'
           # Custom version
-          galaxy_version: '0.1.26-test'
+          galaxy_version: '0.1.29-test'

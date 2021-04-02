@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Any unreleased changes will be included here.
 
+## [2.2.5] - 2021-04-02
+
+### Fixed
+
+- Fixed the deprecated `set-env` syntax in the release workflow. Now uses the correct syntax.
+
 ## [2.2.4] - 2021-04-01
 
 ### Changed

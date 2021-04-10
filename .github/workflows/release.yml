@@ -25,7 +25,7 @@ jobs:
         run: echo "RELEASE_VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
 
       - name: Deploy to GitHub Package Registry
-        uses: elgohr/Publish-Docker-Github-Action@f7aca2fea76a5218f3c76cd5933c3ba1d8008774 # 3.0.2
+        uses: elgohr/Publish-Docker-Github-Action@13c6c46d98bc92e6c046454248cd28630400846a # 3.0.3
         with:
           name: artis3n/ansible_galaxy_collection/runtime
           username: ${{ github.actor }}
@@ -35,7 +35,7 @@ jobs:
           tags: "latest,${{ env.RELEASE_VERSION }}"
 
       - name: Deploy to Docker Hub
-        uses: elgohr/Publish-Docker-Github-Action@f7aca2fea76a5218f3c76cd5933c3ba1d8008774 # 3.0.2
+        uses: elgohr/Publish-Docker-Github-Action@13c6c46d98bc92e6c046454248cd28630400846a # 3.0.3
         with:
           name: artis3n/ansible_galaxy_collection
           username: ${{ secrets.docker_username }}

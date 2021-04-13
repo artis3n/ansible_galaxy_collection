@@ -16,7 +16,7 @@ jobs:
           node-version: '14.x'
 
       - name: Use Cache
-        uses: actions/cache@v2.1.4
+        uses: actions/cache@v2.1.5
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}

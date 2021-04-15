@@ -16,7 +16,7 @@ jobs:
           node-version: '14.x'
 
       - name: Use Cache
-        uses: actions/cache@v2.1.4
+        uses: actions/cache@v2.1.5
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -48,4 +48,4 @@ jobs:
           # Fake location that's a small amount of content
           collection_dir: 'fake_collection'
           # Custom version
-          galaxy_version: '0.1.30-test'
+          galaxy_version: '0.1.31-test'

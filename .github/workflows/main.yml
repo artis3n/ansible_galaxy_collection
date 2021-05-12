@@ -48,4 +48,4 @@ jobs:
           # Fake location that's a small amount of content
           collection_dir: 'fake_collection'
           # Custom version
-          galaxy_version: '0.1.33-test'
+          galaxy_version: '0.1.34-test'

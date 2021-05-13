@@ -12,10 +12,10 @@ RUN apt-get update \
     # Remove apt-get cache from the layer to reduce container size
     && rm -rf /var/lib/apt/lists/*
 RUN pip3 install --upgrade pip \
-    && pip install ansible
+    && npm install -g npm
 
+RUN pip3 install ansible
 COPY . .
-RUN npm install -g npm \
-    && npm install --production
+RUN npm install --production
 
 ENTRYPOINT ["node", "/dist/main.js"]

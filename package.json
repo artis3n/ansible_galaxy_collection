@@ -1,6 +1,6 @@
 {
   "name": "ansible_galaxy_collection",
-  "version": "2.2.5",
+  "version": "2.3.0",
   "description": "Deploy a collection to Ansible Galaxy",
   "main": "dist/index.js",
   "scripts": {
@@ -12,13 +12,14 @@
     "format": "prettier --write **/*.ts",
     "format-check": "prettier --check **/*.ts",
     "clean": "rm -rf node_modules",
-    "all": "npm run format && npm run build && git add . && git s"
+    "all": "npm run format && npm run build && git add . && git s",
+    "docker": "DOCKER_BUILDKIT=1 docker build -t artis3n/ansible_galaxy_collection:local ."
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/artis3n/ansible_galaxy_collection.git"
   },
-  "author": "Ari Kalfus (@artis3n) <dev@artis3nal.com>",
+  "author": "Ari Kalfus <dev@artis3nal.com> (@artis3n)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/artis3n/ansible_galaxy_collection/issues"

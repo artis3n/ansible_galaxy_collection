@@ -8,6 +8,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Any unreleased changes will be included here.
 
+## [2.3.0] - 2021-05-13
+
+## Changed
+
+- Bump the Docker container node version from 14-slim to 16-slim.
+
+## Added
+
+- Adds a `npm run docker` command that builds the container locally using docker and buildkit.
+
 ## [2.2.5] - 2021-04-02
 
 ### Fixed

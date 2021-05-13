@@ -1,4 +1,4 @@
-FROM node:14-slim
+FROM node:16-slim
 
 # Required for python inside Docker containers
 ENV LC_ALL C.UTF-8
@@ -11,7 +11,8 @@ RUN apt-get update \
     && apt-get autoclean -y \
     # Remove apt-get cache from the layer to reduce container size
     && rm -rf /var/lib/apt/lists/*
-RUN pip3 install ansible
+RUN pip3 install --upgrade pip \
+    && pip install ansible
 
 COPY . .
 RUN npm install --production

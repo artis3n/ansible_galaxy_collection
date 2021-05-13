@@ -6,10 +6,10 @@
 .nvmrc
 .prettierrc.json
 CHANGELOG.md
-Dockerfile
 fake_collection
 jest.config.js
 node_modules
 src
 tsconfig.json
 __tests__
+coverage

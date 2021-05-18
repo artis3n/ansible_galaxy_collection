@@ -4,6 +4,8 @@ FROM node:16-slim
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
 
+WORKDIR /app
+
 RUN apt-get update \
     && apt-get install -y --no-install-recommends python3 python3-pip python3-setuptools python3-wheel \
     # Slim down layer size
@@ -18,4 +20,4 @@ RUN pip3 install ansible
 COPY . .
 RUN npm install --production
 
-ENTRYPOINT ["node", "/dist/main.js"]
+ENTRYPOINT ["node", "/app/dist/main.js"]

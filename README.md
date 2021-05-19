@@ -81,8 +81,8 @@ Default usage:
 Pass in `galaxy.yml` version as an input parameter:
 
 ```yaml
-- name: Get the version from the tag
-  run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF/refs\/tags\//
+- name: Get the version name from the tags
+  run: echo "RELEASE_VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
 
 - name: Injecting a dynamic Collection version
   uses: artis3n/ansible_galaxy_collection@v2

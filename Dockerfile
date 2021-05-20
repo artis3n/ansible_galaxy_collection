@@ -29,4 +29,4 @@ RUN chown -R node:node /app
 USER node
 RUN npm ci --production
 
-ENTRYPOINT ["node", "/dist/main.js"]
+ENTRYPOINT ["node", "/app/dist/main.js"]

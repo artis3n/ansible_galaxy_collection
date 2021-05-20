@@ -34,6 +34,11 @@ jobs:
       - name: Run tests
         run: npm test
 
+      # Ensure the image that is built in the subsequent steps are not poisoned by
+      # existing node modules
+      - name: Clean up node_modules
+        run: rm -rf ./node_modules
+
       - name: Test the action
         uses: ./
         with:
@@ -48,4 +53,4 @@ jobs:
           # Fake location that's a small amount of content
           collection_dir: 'fake_collection'
           # Custom version
-          galaxy_version: '0.3.2-test'
+          galaxy_version: '0.3.3-test'

@@ -34,11 +34,6 @@ jobs:
       - name: Run tests
         run: npm test
 
-      # Ensure the image that is built in the subsequent steps are not poisoned by
-      # existing node modules
-      - name: Clean up node_modules
-        run: rm -rf ./node_modules
-
       - name: Test the action
         uses: ./
         with:
@@ -77,4 +72,4 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ghcr.io/artis3n/ansible_galaxy_collection-SNAPSHOT:${{ github.sha }}
+            ghcr.io/artis3n/ansible_galaxy_collection-testartifact:SNAPSHOT-${{ github.sha }}

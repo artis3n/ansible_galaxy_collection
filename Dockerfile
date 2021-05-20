@@ -15,18 +15,12 @@ RUN apt-get update \
     # Remove apt-get cache from the layer to reduce container size
     && rm -rf /var/lib/apt/lists/*
 
-RUN  npm install -g npm
+RUN  npm install -g npm \
+    && python3 -m pip install --upgrade pip
 
-USER node
-ENV PATH="$PATH:/home/node/.local/bin"
-RUN python3 -m pip install --upgrade pip \
-    && python3 -m pip install --user ansible
-
+COPY requirements.txt ./
+RUN python3 -m pip install -r requirements.txt
 COPY . .
-# Node needs write privileges inside here, has to come after the COPY
-USER root
-RUN chown -R node:node /app
-USER node
 RUN npm ci --production
 
 ENTRYPOINT ["node", "/app/dist/main.js"]

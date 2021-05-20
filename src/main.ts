@@ -61,7 +61,14 @@ function prepareConfig(configFileName: string, collectionLocation: string): [str
   if (collectionLocation.length > 0) {
     galaxyConfigFilePath = join(collectionLocation, configFileName);
   }
+  coreDebug(`Using galaxy config file locate at: ${galaxyConfigFilePath}`);
 
-  const configContent: GalaxyConfigFile = yamlLoad(readFileSync(galaxyConfigFilePath, 'utf8')) as GalaxyConfigFile;
-  return [galaxyConfigFilePath, new GalaxyConfig(configContent)];
+  try {
+    const configContent: GalaxyConfigFile = yamlLoad(readFileSync(galaxyConfigFilePath, 'utf8')) as GalaxyConfigFile;
+    return [galaxyConfigFilePath, new GalaxyConfig(configContent)];
+  } catch(e) {
+    setFailed(`Was unable to read the galaxy.yml file at path: ${galaxyConfigFilePath}`)
+    throw e
+  }
+
 }

@@ -18,6 +18,6 @@ RUN pip3 install --upgrade pip \
 
 RUN pip3 install ansible
 COPY . .
-RUN npm install --production
+RUN npm ci
 
 ENTRYPOINT ["node", "/app/dist/main.js"]

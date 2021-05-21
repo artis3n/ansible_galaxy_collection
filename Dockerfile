@@ -19,8 +19,10 @@ RUN  npm install -g npm \
     && python3 -m pip install --upgrade pip
 
 COPY requirements.txt ./
-RUN python3 -m pip install -r requirements.txt
+RUN python3 -m pip install -r requirements.txt \
+    && rm -rf /root/.cache/
 COPY . .
-RUN npm ci --production
+RUN npm ci --production \
+    && npm cache clean --force
 
 ENTRYPOINT ["node", "/app/dist/main.js"]

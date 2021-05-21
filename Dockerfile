@@ -7,17 +7,21 @@ ENV LANG C.UTF-8
 WORKDIR /app
 
 RUN apt-get update \
+    && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends python3 python3-pip python3-setuptools python3-wheel \
     # Slim down layer size
     && apt-get autoremove -y \
     && apt-get autoclean -y \
     # Remove apt-get cache from the layer to reduce container size
     && rm -rf /var/lib/apt/lists/*
-RUN pip3 install --upgrade pip \
-    && npm install -g npm
 
-RUN pip3 install ansible
+RUN  npm install -g npm \
+    && python3 -m pip install --no-cache-dir --upgrade pip
+
+COPY requirements.txt ./
+RUN python3 -m pip install --no-cache-dir -r requirements.txt
 COPY . .
-RUN npm install --production
+RUN npm ci --production \
+    && npm cache clean --force
 
 ENTRYPOINT ["node", "/app/dist/main.js"]

@@ -101,6 +101,15 @@ If your Collection root is not in your repo root:
     collection_dir: 'src/my_collection'
 ```
 
+Not the common way to invoke actions, but save ~3 minutes in your invocation by using the built image instead of building ansible during the image creation. You will need to pin to a specific tag, not a general value like `v2`:
+
+```yaml
+- name: Build and Deploy Collection
+  uses: docker://ghcr.io/artis3n/ansible_galaxy_collection@v2.4.2
+  with:
+    api_key: '${{ secrets.GALAXY_API_KEY }}'
+```
+
 ## Exit Codes
 
 - `0`: `Ok`

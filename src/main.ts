@@ -19,7 +19,7 @@ try {
   /**
    * @deprecated You probably want 'collection_dir,' not this parameter.
    */
-  const galaxyConfigFile = getInput('galaxy_config_file');
+  const galaxyConfigFile = getInput('galaxy_config_file') || 'galaxy.yml';
 
   const [galaxyConfigResolvedPath, galaxyConfig] = prepareConfig(galaxyConfigFile, collectionLocation);
   let collection: Collection;
@@ -61,7 +61,13 @@ function prepareConfig(configFileName: string, collectionLocation: string): [str
   if (collectionLocation.length > 0) {
     galaxyConfigFilePath = join(collectionLocation, configFileName);
   }
+  coreDebug(`Using galaxy config file locate at: ${galaxyConfigFilePath}`);
 
-  const configContent: GalaxyConfigFile = yamlLoad(readFileSync(galaxyConfigFilePath, 'utf8')) as GalaxyConfigFile;
-  return [galaxyConfigFilePath, new GalaxyConfig(configContent)];
+  try {
+    const configContent: GalaxyConfigFile = yamlLoad(readFileSync(galaxyConfigFilePath, 'utf8')) as GalaxyConfigFile;
+    return [galaxyConfigFilePath, new GalaxyConfig(configContent)];
+  } catch (e) {
+    setFailed(`Was unable to read the galaxy.yml file at path: ${galaxyConfigFilePath}`);
+    throw e;
+  }
 }

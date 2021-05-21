@@ -14,7 +14,6 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CLEAN_TARGETS: ''
-          BUILD_COMMAND: 'npm run docker'
 
   deploy:
     runs-on: ubuntu-latest

@@ -66,9 +66,8 @@ function prepareConfig(configFileName: string, collectionLocation: string): [str
   try {
     const configContent: GalaxyConfigFile = yamlLoad(readFileSync(galaxyConfigFilePath, 'utf8')) as GalaxyConfigFile;
     return [galaxyConfigFilePath, new GalaxyConfig(configContent)];
-  } catch(e) {
-    setFailed(`Was unable to read the galaxy.yml file at path: ${galaxyConfigFilePath}`)
-    throw e
+  } catch (e) {
+    setFailed(`Was unable to read the galaxy.yml file at path: ${galaxyConfigFilePath}`);
+    throw e;
   }
-
 }

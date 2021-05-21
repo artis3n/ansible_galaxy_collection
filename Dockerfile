@@ -21,7 +21,7 @@ RUN  npm install -g npm \
 COPY requirements.txt ./
 RUN python3 -m pip install --no-cache-dir -r requirements.txt
 COPY . .
-RUN npm install --production \
+RUN npm ci --production \
     && npm cache clean --force
 
 ENTRYPOINT ["node", "/app/dist/main.js"]

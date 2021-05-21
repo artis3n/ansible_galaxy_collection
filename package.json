@@ -1,0 +1,49 @@
+{
+  "name": "ansible_galaxy_collection",
+  "version": "2.4.1",
+  "description": "Deploy a collection to Ansible Galaxy",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "npm run test:unit",
+    "test:unit": "jest --coverage",
+    "test:e2e": "act -j test_deploy -s GALAXY_API_KEY='fakekey'",
+    "build": "tsc",
+    "dev": "tsc -w",
+    "format": "prettier --write **/*.ts",
+    "format-check": "prettier --check **/*.ts",
+    "clean": "rm -rf node_modules",
+    "all": "npm run format && npm run build && git add . && git s",
+    "docker": "DOCKER_BUILDKIT=1 docker build -t artis3n/ansible_galaxy_collection:local ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artis3n/ansible_galaxy_collection.git"
+  },
+  "author": "Ari Kalfus <dev@artis3nal.com> (@artis3n)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/artis3n/ansible_galaxy_collection/issues"
+  },
+  "homepage": "https://github.com/artis3n/ansible_galaxy_collection#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.7",
+    "@actions/exec": "^1.0.4",
+    "@actions/io": "^1.1.0",
+    "class-validator": "^0.13.1",
+    "js-yaml": "^4.0.0",
+    "semver": "^7.3.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.0",
+    "@babel/preset-env": "^7.14.0",
+    "@types/jest": "^26.0.23",
+    "@types/js-yaml": "^4.0.1",
+    "@types/node": "^15.0.2",
+    "@types/semver": "^7.3.5",
+    "jest": "^26.0.19",
+    "jest-circus": "^26.6.3",
+    "prettier": "^2.2.1",
+    "ts-jest": "^26.5.4",
+    "typescript": "^4.2.2"
+  }
+}

@@ -1,0 +1,13 @@
+.git
+.github
+.gitignore
+.idea
+.prettierrc.json
+CHANGELOG.md
+fake_collection
+jest.config.js
+node_modules
+src
+tsconfig.json
+__tests__
+coverage

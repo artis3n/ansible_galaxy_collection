@@ -13,8 +13,8 @@ const fs_1 = require("fs");
 try {
     const apiKey = core_1.getInput('api_key', { required: true });
     const collectionLocation = core_1.getInput('collection_dir');
-    const willBuild = (core_1.getInput("build").toLowerCase().trim() || "true") == "true";
-    const willPublish = (core_1.getInput("publish").toLowerCase().trim() || "true") == "true";
+    const willBuild = (core_1.getInput('build').toLowerCase().trim() || 'true') == 'true';
+    const willPublish = (core_1.getInput('publish').toLowerCase().trim() || 'true') == 'true';
     // Will always be a string, but may be an empty string if the parameter is not defined
     const maybeGalaxyVersion = core_1.getInput('galaxy_version');
     /**
@@ -44,11 +44,12 @@ try {
     }
     core_1.debug(`Building collection ${collection}`);
     galaxyConfig.commit(galaxyConfigResolvedPath);
-    new Promise((resolve) => {
+    new Promise(resolve => {
         const done = resolve;
         if (willBuild) {
-            collection.build(io_1.which, exec_1.exec)
-                .then((result) => {
+            collection
+                .build(io_1.which, exec_1.exec)
+                .then(result => {
                 core_1.debug(`Successfully built local ${collection} archive.`);
                 done(result);
             })
@@ -60,10 +61,10 @@ try {
         else {
             done(null);
         }
-    })
-        .then(() => {
+    }).then(() => {
         if (willPublish) {
-            collection.publish(io_1.which, exec_1.exec)
+            collection
+                .publish(io_1.which, exec_1.exec)
                 .then(() => core_1.debug(`Successfully published ${collection} to Ansible Galaxy.`))
                 .catch(({ message }) => {
                 core_1.setFailed(message);

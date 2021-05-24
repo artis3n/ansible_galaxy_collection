@@ -45,7 +45,26 @@ jobs:
         uses: ./
         with:
           api_key: '${{ secrets.GALAXY_API_KEY }}'
-          # Fake location that's a small amount of content
           collection_dir: 'fake_collection'
           # Custom version
-          galaxy_version: '0.3.12-test'
+          galaxy_version: '0.4.0-test'
+
+      - name: Test the action - only build
+        uses: ./
+        with:
+          api_key: '${{ secrets.GALAXY_API_KEY }}'
+          collection_dir: 'fake_collection'
+          # Different from above version
+          galaxy_version: '0.4.0-build'
+          build: true
+          publish: false
+
+      - name: Test the action - only publish
+        uses: ./
+        with:
+          api_key: '${{ secrets.GALAXY_API_KEY }}'
+          collection_dir: 'fake_collection'
+          # Should match version above
+          galaxy_version: '0.4.0-build'
+          build: false
+          publish: true

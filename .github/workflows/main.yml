@@ -4,9 +4,10 @@ on: [pull_request]
 
 env:
   RUNNER_TEMP: /tmp
+  TEST_ARTIFACT_VERSION: 0.4.2
 
 jobs:
-  local-tests:
+  local_tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.3.4
@@ -52,7 +53,7 @@ jobs:
           api_key: '${{ secrets.GALAXY_API_KEY }}'
           collection_dir: 'fake_collection'
           # Custom version
-          galaxy_version: '0.4.1-test'
+          galaxy_version: '${{ env.TEST_ARTIFACT_VERSION }}-test'
 
   test_build_then_publish:
     runs-on: ubuntu-latest
@@ -65,7 +66,7 @@ jobs:
           api_key: '${{ secrets.GALAXY_API_KEY }}'
           collection_dir: 'fake_collection'
           # Different from above version
-          galaxy_version: '0.4.1-build'
+          galaxy_version: '${{ env.TEST_ARTIFACT_VERSION }}-build'
           build: true
           publish: false
 
@@ -75,6 +76,6 @@ jobs:
           api_key: '${{ secrets.GALAXY_API_KEY }}'
           collection_dir: 'fake_collection'
           # Should match version above
-          galaxy_version: '0.4.1-build'
+          galaxy_version: '${{ env.TEST_ARTIFACT_VERSION }}-build'
           build: false
           publish: true

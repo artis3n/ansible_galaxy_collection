@@ -14,6 +14,18 @@ inputs:
       The directory in which the Ansible Collection is stored. This defaults to the project root.
     required: false
     default: './'
+  build:
+    description: |
+      You can now choose to build a collection without publishing, and vice versa.
+      If you wish to disable building a collection, set this parameter to "false."
+    required: true
+    default: "true"
+  publish:
+    description: |
+      You can now choose to publish a collection without building (from a pre-built archive), and vice versa.
+      If you wish to disable publishing a collection, set this parameter to "false."
+    required: true
+    default: "true"
   galaxy_version:
     description: Dynamically inject a semver-compatible version into your galaxy.yml file.
     required: false

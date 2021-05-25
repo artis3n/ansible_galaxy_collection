@@ -18,7 +18,7 @@ try {
     /**
      * @deprecated You probably want 'collection_dir,' not this parameter.
      */
-    const galaxyConfigFile = core_1.getInput('galaxy_config_file');
+    const galaxyConfigFile = core_1.getInput('galaxy_config_file') || 'galaxy.yml';
     const [galaxyConfigResolvedPath, galaxyConfig] = prepareConfig(galaxyConfigFile, collectionLocation);
     let collection;
     try {

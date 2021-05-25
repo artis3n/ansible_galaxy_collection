@@ -42,6 +42,11 @@ inputs:
 runs:
   using: 'docker'
   image: Dockerfile
+  args:
+    - ${{ inputs.api_key }}
+    - ${{ inputs.collection_dir }}
+    - ${{ inputs.galaxy_version }}
+    - ${{ inputs.galaxy_config_file }}
 branding:
   icon: 'box'
   color: 'purple'

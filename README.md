@@ -59,6 +59,18 @@ This parameter is not compatible with the `galaxy_version` parameter.
 
 -->
 
+## publish
+
+_New in v2.5.0_
+
+**Default**: `true`
+
+If you want to build a collection archive file but do **not** want to publish it to Ansible Galaxy, you can disable the publishing by setting this parameter to `false`.
+
+The Action will create a collection archive file in the default `ansible-galaxy collection` format: `<namespace-from-galaxy-yml>-<name-from-galaxy-yml>-<semver-version>.tar.gz`.
+
+e.g. `artis3n-mycollection-1.0.0.tar.gz`
+
 ## build
 
 _New in v2.5.0_
@@ -72,18 +84,6 @@ Note that the Action expects the built archive to exist in the root of the `coll
 By default, that is the project root.
 
 The Action also expects the built archive to be named in the default `ansible-galaxy collection` format: `<namespace-from-galaxy-yml>-<name-from-galaxy-yml>-<semver-version>.tar.gz`.
-
-e.g. `artis3n-mycollection-1.0.0.tar.gz`
-
-## publish
-
-_New in v2.5.0_
-
-**Default**: `true`
-
-If you want to build a collection archive file but do **not** want to publish it to Ansible Galaxy, you can disable the publishing by setting this parameter to `false`.
-
-The Action will create a collection archive file in the default `ansible-galaxy collection` format: `<namespace-from-galaxy-yml>-<name-from-galaxy-yml>-<semver-version>.tar.gz`.
 
 e.g. `artis3n-mycollection-1.0.0.tar.gz`
 

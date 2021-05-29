@@ -4,7 +4,7 @@ on: [pull_request]
 
 env:
   RUNNER_TEMP: /tmp
-  TEST_ARTIFACT_VERSION: 0.4.3
+  TEST_ARTIFACT_VERSION: 0.4.4
 
 jobs:
   local_tests:

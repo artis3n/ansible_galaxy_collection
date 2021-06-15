@@ -14,6 +14,8 @@ import { GalaxyConfigFile } from './types';
 try {
   const apiKey = getInput('api_key', { required: true });
   const collectionLocation: string = getInput('collection_dir');
+  const willBuild: boolean = (getInput('build').toLowerCase().trim() || 'true') == 'true';
+  const willPublish: boolean = (getInput('publish').toLowerCase().trim() || 'true') == 'true';
   // Will always be a string, but may be an empty string if the parameter is not defined
   const maybeGalaxyVersion = getInput('galaxy_version');
   /**
@@ -45,13 +47,33 @@ try {
 
   coreDebug(`Building collection ${collection}`);
   galaxyConfig.commit(galaxyConfigResolvedPath);
-  collection
-    .publish(which, exec)
-    .then(() => coreDebug(`Successfully published ${collection} to Ansible Galaxy.`))
-    .catch(({ message }: Error) => {
-      setFailed(message);
-      process.exit(ExitCodes.DeployFailed);
-    });
+  new Promise(resolve => {
+    const done = resolve;
+    if (willBuild) {
+      collection
+        .build(which, exec)
+        .then(result => {
+          coreDebug(`Successfully built local ${collection} archive.`);
+          done(result);
+        })
+        .catch(({ message }: Error) => {
+          setFailed(message);
+          process.exit(ExitCodes.BuildFailed);
+        });
+    } else {
+      done(null);
+    }
+  }).then(() => {
+    if (willPublish) {
+      collection
+        .publish(which, exec)
+        .then(() => coreDebug(`Successfully published ${collection} to Ansible Galaxy.`))
+        .catch(({ message }: Error) => {
+          setFailed(message);
+          process.exit(ExitCodes.PublishFailed);
+        });
+    }
+  });
 } catch (error) {
   setFailed(error.message);
 }

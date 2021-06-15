@@ -2,6 +2,8 @@ export enum ExitCodes {
   Ok,
   DeployFailed,
   ValidationFailed,
+  BuildFailed,
+  PublishFailed,
 }
 
 export enum PublishCommand {

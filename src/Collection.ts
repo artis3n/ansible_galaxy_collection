@@ -58,6 +58,20 @@ export class Collection {
   }
 
   /**
+   * Builds a Collection in preparation for submission to Ansible Galaxy.
+   * @param which Either which from @actions/io or an injected stub for testing
+   * @param exec Either exec from @actions/exec or an injected stub for testing
+   */
+  async build(
+    which: (tool: string, check?: boolean | undefined) => Promise<string>,
+    exec: (commandLine: string, args?: string[], options?: ExecOptions) => Promise<number>,
+  ): Promise<number> {
+    const galaxyCommandPath = await which('ansible-galaxy', true);
+    // If a custom directory is passed in, use that. Otherwise, do not specify a custom location.
+    return exec(`${galaxyCommandPath} collection build ${this.path}`);
+  }
+
+  /**
    * Publishes a Collection to Ansible Galaxy.
    * @param which Either which from @actions/io or an injected stub for testing
    * @param exec Either exec from @actions/exec or an injected stub for testing
@@ -68,7 +82,6 @@ export class Collection {
   ): Promise<number> {
     const galaxyCommandPath = await which('ansible-galaxy', true);
     // If a custom directory is passed in, use that. Otherwise, do not specify a custom location.
-    await exec(`${galaxyCommandPath} collection build ${this.path}`);
     return exec(`${galaxyCommandPath} collection publish ${this}.tar.gz --api-key=${this.apiKey}`);
   }
 }

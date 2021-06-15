@@ -6,6 +6,8 @@ var ExitCodes;
     ExitCodes[ExitCodes["Ok"] = 0] = "Ok";
     ExitCodes[ExitCodes["DeployFailed"] = 1] = "DeployFailed";
     ExitCodes[ExitCodes["ValidationFailed"] = 2] = "ValidationFailed";
+    ExitCodes[ExitCodes["BuildFailed"] = 3] = "BuildFailed";
+    ExitCodes[ExitCodes["PublishFailed"] = 4] = "PublishFailed";
 })(ExitCodes = exports.ExitCodes || (exports.ExitCodes = {}));
 var PublishCommand;
 (function (PublishCommand) {

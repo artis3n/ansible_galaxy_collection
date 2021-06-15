@@ -13,6 +13,8 @@ const fs_1 = require("fs");
 try {
     const apiKey = core_1.getInput('api_key', { required: true });
     const collectionLocation = core_1.getInput('collection_dir');
+    const willBuild = (core_1.getInput('build').toLowerCase().trim() || 'true') == 'true';
+    const willPublish = (core_1.getInput('publish').toLowerCase().trim() || 'true') == 'true';
     // Will always be a string, but may be an empty string if the parameter is not defined
     const maybeGalaxyVersion = core_1.getInput('galaxy_version');
     /**
@@ -42,12 +44,33 @@ try {
     }
     core_1.debug(`Building collection ${collection}`);
     galaxyConfig.commit(galaxyConfigResolvedPath);
-    collection
-        .publish(io_1.which, exec_1.exec)
-        .then(() => core_1.debug(`Successfully published ${collection} to Ansible Galaxy.`))
-        .catch(({ message }) => {
-        core_1.setFailed(message);
-        process.exit(enums_1.ExitCodes.DeployFailed);
+    new Promise(resolve => {
+        const done = resolve;
+        if (willBuild) {
+            collection
+                .build(io_1.which, exec_1.exec)
+                .then(result => {
+                core_1.debug(`Successfully built local ${collection} archive.`);
+                done(result);
+            })
+                .catch(({ message }) => {
+                core_1.setFailed(message);
+                process.exit(enums_1.ExitCodes.BuildFailed);
+            });
+        }
+        else {
+            done(null);
+        }
+    }).then(() => {
+        if (willPublish) {
+            collection
+                .publish(io_1.which, exec_1.exec)
+                .then(() => core_1.debug(`Successfully published ${collection} to Ansible Galaxy.`))
+                .catch(({ message }) => {
+                core_1.setFailed(message);
+                process.exit(enums_1.ExitCodes.PublishFailed);
+            });
+        }
     });
 }
 catch (error) {

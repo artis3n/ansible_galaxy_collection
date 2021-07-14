@@ -14,7 +14,7 @@ Deploy a Collection to Ansible Galaxy.
 This action expects to be run from a repository with certain met conditions.
 
 1. The repository contains a valid Ansible Galaxy Collection, meaning it minimally contains a `galaxy.yml` file and a `README.md`.
-2. The repository has a top-level `meta` directory with the file `runtime.yml`, which is [required by Ansible Galaxy](https://docs.ansible.com/ansible/3/dev_guide/developing_collections.html#meta-directory).
+2. The repository has a top-level `meta` directory with the file `runtime.yml` minimally containing the key `requires_ansible`, which is [required by Ansible Galaxy](https://docs.ansible.com/ansible/3/dev_guide/developing_collections.html#meta-directory).
 
 An example workflow using this action can be found [here](https://github.com/artis3n/ansible-collection-github/blob/master/.github/workflows/deploy.yml) and in [the tests](.github/workflows/main.yml).
 

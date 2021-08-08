@@ -6,7 +6,7 @@ ENV LANG C.UTF-8
 
 WORKDIR /app
 
-RUN apt-get update \
+RUN apt-get update \Run
     && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends python3 python3-pip python3-setuptools python3-wheel \
     # Slim down layer size
@@ -15,13 +15,13 @@ RUN apt-get update \
     # Remove apt-get cache from the layer to reduce container size
     && rm -rf /var/lib/apt/lists/*
 
-RUN  npm install -g npm \
+RUN  npm install -g npm \run
     && python3 -m pip install --no-cache-dir --upgrade pip
 
-COPY requirements.txt ./
+COPY requirements.txt ./run
 RUN python3 -m pip install --no-cache-dir -r requirements.txt
 COPY . .
-RUN npm ci --production \
+RUN npm ci --production \run
     && npm cache clean --force
 
-ENTRYPOINT ["node", "/app/dist/main.js"]
+ENTRYPOINT ["node", "/app/dist/main.js"]run

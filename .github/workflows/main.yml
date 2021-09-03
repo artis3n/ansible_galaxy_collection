@@ -4,14 +4,14 @@ on: [pull_request]
 
 env:
   RUNNER_TEMP: /tmp
-  TEST_ARTIFACT_VERSION: 0.6.0
+  TEST_ARTIFACT_VERSION: 0.6.1
 
 jobs:
   local_tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.3.4
-      - uses: actions/setup-node@v2.2.0
+      - uses: actions/setup-node@v2.4.0
         with:
           node-version: '16.x'
           cache: 'npm'
@@ -88,7 +88,7 @@ jobs:
           password: ${{ secrets.CR_PAT }}
 
       - name: Build and Push
-        uses: docker/build-push-action@v2.6.1
+        uses: docker/build-push-action@v2.7.0
         with:
           context: .
           file: ./Dockerfile

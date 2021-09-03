@@ -15,6 +15,9 @@
     "all": "npm run format && npm run build && git add . && git s",
     "docker": "DOCKER_BUILDKIT=1 docker build -t artis3n/ansible_galaxy_collection:local ."
   },
+  "engines": {
+    "node": "~16"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/artis3n/ansible_galaxy_collection.git"
@@ -34,16 +37,16 @@
     "semver": "^7.3.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.6",
-    "@babel/preset-env": "^7.14.7",
-    "@types/jest": "^26.0.24",
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@types/jest": "^27.0.1",
     "@types/js-yaml": "^4.0.2",
-    "@types/node": "^16.3.2",
-    "@types/semver": "^7.3.7",
+    "@types/node": "^16.7.10",
+    "@types/semver": "^7.3.8",
     "jest": "^27.0.6",
     "jest-circus": "^27.0.6",
     "prettier": "^2.3.2",
-    "ts-jest": "^27.0.3",
+    "ts-jest": "^27.0.5",
     "typescript": "^4.3.5"
   }
 }

@@ -15,6 +15,9 @@
     "all": "npm run format && npm run build && git add . && git s",
     "docker": "DOCKER_BUILDKIT=1 docker build -t artis3n/ansible_galaxy_collection:local ."
   },
+  "engines": {
+    "node": "~16"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/artis3n/ansible_galaxy_collection.git"

@@ -32,7 +32,7 @@ try {
       customDir: collectionLocation,
       customVersion: maybeGalaxyVersion,
     });
-  } catch (err) {
+  } catch (err: any) {
     setFailed(err);
     process.exit(ExitCodes.ValidationFailed);
   }
@@ -74,7 +74,7 @@ try {
         });
     }
   });
-} catch (error) {
+} catch (error: any) {
   setFailed(error.message);
 }
 

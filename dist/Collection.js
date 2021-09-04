@@ -66,20 +66,20 @@ class Collection {
     }
 }
 __decorate([
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], Collection.prototype, "namespace", void 0);
 __decorate([
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], Collection.prototype, "name", void 0);
 __decorate([
-    decorators_1.IsSemver({ message: '$value must be semver-compatible' }),
-    class_validator_1.IsNotEmpty(),
+    (0, decorators_1.IsSemver)({ message: '$value must be semver-compatible' }),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], Collection.prototype, "version", void 0);
 __decorate([
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], Collection.prototype, "apiKey", void 0);
 exports.Collection = Collection;

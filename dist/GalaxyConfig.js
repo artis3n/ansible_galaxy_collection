@@ -22,7 +22,7 @@ class GalaxyConfig {
         return this.config.version;
     }
     set version(input) {
-        if (semver_1.valid(input)) {
+        if ((0, semver_1.valid)(input)) {
             this.config.version = input;
             this.changes = true;
         }
@@ -35,8 +35,8 @@ class GalaxyConfig {
      */
     commit(filePath) {
         if (this.changes) {
-            const yamlAsString = js_yaml_1.dump(this.config);
-            fs_1.writeFileSync(filePath, yamlAsString, 'utf8');
+            const yamlAsString = (0, js_yaml_1.dump)(this.config);
+            (0, fs_1.writeFileSync)(filePath, yamlAsString, 'utf8');
         }
     }
 }

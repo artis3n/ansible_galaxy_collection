@@ -41,7 +41,7 @@
     "@babel/preset-env": "^7.15.0",
     "@types/jest": "^27.0.1",
     "@types/js-yaml": "^4.0.2",
-    "@types/node": "^16.7.10",
+    "@types/node": "^16.10.2",
     "@types/semver": "^7.3.8",
     "jest": "^27.0.6",
     "jest-circus": "^27.0.6",

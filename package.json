@@ -43,7 +43,7 @@
     "@types/js-yaml": "^4.0.2",
     "@types/node": "^16.7.10",
     "@types/semver": "^7.3.8",
-    "jest": "^27.0.6",
+    "jest": "^27.3.1",
     "jest-circus": "^27.0.6",
     "prettier": "^2.3.2",
     "ts-jest": "^27.0.5",

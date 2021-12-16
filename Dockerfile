@@ -1,4 +1,4 @@
-FROM node:16-slim
+FROM node:17-slim
 
 # Required for python inside Docker containers
 ENV LC_ALL C.UTF-8
@@ -16,7 +16,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 RUN  npm install -g npm \
-    && python3 -m pip install --no-cache-dir --upgrade pip
+     && python3 -m pip install --no-cache-dir --upgrade pip
 
 COPY requirements.txt ./
 RUN python3 -m pip install --no-cache-dir -r requirements.txt

@@ -6,17 +6,17 @@
   "scripts": {
     "test": "npm run test:unit",
     "test:unit": "jest --coverage",
-    "test:e2e": "act -j test_deploy -s GALAXY_API_KEY='fakekey'",
+    "test:e2e": "act -j test_deploy -s GALAXY_API_KEY='fakekey' --container-architecture linux/amd64",
     "build": "tsc",
     "dev": "tsc -w",
     "format": "prettier --write **/*.ts",
     "format-check": "prettier --check **/*.ts",
     "clean": "rm -rf node_modules",
     "all": "npm run format && npm run build && git add . && git s",
-    "docker": "DOCKER_BUILDKIT=1 docker build -t artis3n/ansible_galaxy_collection:local ."
+    "docker": "docker build -t artis3n/ansible_galaxy_collection:local ."
   },
   "engines": {
-    "node": "~16"
+    "node": "~17"
   },
   "repository": {
     "type": "git",
@@ -29,24 +29,25 @@
   },
   "homepage": "https://github.com/artis3n/ansible_galaxy_collection#readme",
   "dependencies": {
-    "@actions/core": "^1.4.0",
+    "@actions/core": "^1.6.0",
     "@actions/exec": "^1.1.0",
     "@actions/io": "^1.1.1",
-    "class-validator": "^0.13.1",
+    "class-validator": "^0.13.2",
     "js-yaml": "^4.1.0",
     "semver": "^7.3.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.0",
+    "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.15.0",
     "@types/jest": "^27.0.1",
     "@types/js-yaml": "^4.0.2",
-    "@types/node": "^16.7.10",
+    "@types/node": "^16.11.11",
     "@types/semver": "^7.3.8",
-    "jest": "^27.0.6",
-    "jest-circus": "^27.0.6",
+    "@types/validator": "^13.7.0",
+    "jest": "^27.4.2",
+    "jest-circus": "^27.4.2",
     "prettier": "^2.3.2",
     "ts-jest": "^27.0.5",
-    "typescript": "^4.3.5"
+    "typescript": "^4.5.2"
   }
 }

@@ -16,7 +16,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 RUN  npm install -g npm \
-    && python3 -m pip install --no-cache-dir --upgrade pip
+     && python3 -m pip install --no-cache-dir --upgrade pip
 
 COPY requirements.txt ./
 RUN python3 -m pip install --no-cache-dir -r requirements.txt

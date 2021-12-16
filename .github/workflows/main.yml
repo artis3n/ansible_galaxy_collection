@@ -4,7 +4,7 @@ on: [pull_request]
 
 env:
   RUNNER_TEMP: /tmp
-  TEST_ARTIFACT_VERSION: 0.6.6
+  TEST_ARTIFACT_VERSION: 0.6.7
 
 jobs:
   local_tests:
@@ -79,9 +79,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2.4.0
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1.6.0
         with:
@@ -107,9 +104,9 @@ jobs:
         uses: docker/build-push-action@v2.7.0
         with:
           context: .
-          platforms: linux/amd64, linux/arm64
+          platforms: linux/amd64
           file: ./Dockerfile
-          push: true
+          push: false
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha

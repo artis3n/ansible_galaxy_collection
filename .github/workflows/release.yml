@@ -3,6 +3,9 @@ on:
     types:
       - published
 
+env:
+  IMAGE_NAME: artis3n/ansible_galaxy_collection
+
 name: Release
 jobs:
   release:

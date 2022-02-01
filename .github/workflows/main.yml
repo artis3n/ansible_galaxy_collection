@@ -101,7 +101,7 @@ jobs:
             type=raw,value=SNAPSHOT-${{ github.sha }}
 
       - name: Build and Push
-        uses: docker/build-push-action@v2.7.0
+        uses: docker/build-push-action@v2.8.0
         with:
           context: .
           platforms: linux/amd64

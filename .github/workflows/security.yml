@@ -8,11 +8,18 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
+      - uses: actions/setup-python@v2
+        cache: 'pip'
+
+      # Snyk needs the Python packages to be installed
+      - run: pip install -r requirements.txt
+
       - name: Install Snyk
         uses: snyk/actions/setup@master
 
       - name: Run Snyk to check for vulnerabilities
         run: snyk test --all-projects --dev --severity-threshold=high --sarif-file-output=snyk.sarif
+        continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 

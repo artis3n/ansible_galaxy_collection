@@ -9,11 +9,11 @@ jobs:
       - uses: actions/checkout@master
 
       - uses: actions/setup-python@v2
-        cache: 'pip'
+        with:
+          cache: 'pip'
 
       # Snyk needs the Python packages to be installed
-      - name: Install pip packages
-        run: pip install -r requirements.txt
+      - run: pip install -r requirements.txt
 
       - name: Install Snyk
         uses: snyk/actions/setup@master

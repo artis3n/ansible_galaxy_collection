@@ -1,6 +1,8 @@
 name: Security Scans
 
-on: [push]
+on:
+  - push
+  - release
 
 jobs:
   snyk-deps:

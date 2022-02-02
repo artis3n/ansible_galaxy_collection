@@ -24,7 +24,29 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
-      - name: Upload results to GitHub Code Scanning
+      - name: Run Snyk Container to check for vulnerabilities
+        run: snyk container --severity-threshold=high --platform=linux/amd64 --sarif-file-output=snyk-container.sarif
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+      - name: Run Snyk Code to check for vulnerabilities
+        run: snyk code test --severity-threshold=high --sarif | tee snyk-code.sarif
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+      - name: Upload dependency results to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v1
         with:
           sarif_file: snyk.sarif
+
+      - name: Upload container results to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: snyk-container.sarif
+
+      - name: Upload code results to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: snyk-code.sarif

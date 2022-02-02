@@ -12,7 +12,8 @@ jobs:
         cache: 'pip'
 
       # Snyk needs the Python packages to be installed
-      - run: pip install -r requirements.txt
+      - name: Install pip packages
+        run: pip install -r requirements.txt
 
       - name: Install Snyk
         uses: snyk/actions/setup@master

@@ -3,7 +3,7 @@ name: Security Scans
 on: [push]
 
 jobs:
-  snyk:
+  snyk-deps:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -24,29 +24,59 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
-      - name: Run Snyk Container to check for vulnerabilities
-        run: snyk container --severity-threshold=high --platform=linux/amd64 --sarif-file-output=snyk-container.sarif
-        continue-on-error: true
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-
-      - name: Run Snyk Code to check for vulnerabilities
-        run: snyk code test --severity-threshold=high --sarif | tee snyk-code.sarif
-        continue-on-error: true
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-
       - name: Upload dependency results to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v1
         with:
           sarif_file: snyk.sarif
 
-      - name: Upload container results to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@v1
-        with:
-          sarif_file: snyk-container.sarif
+  snyk-code:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@master
 
-      - name: Upload code results to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@v1
-        with:
-          sarif_file: snyk-code.sarif
+        - name: Install Snyk
+          uses: snyk/actions/setup@master
+
+        - name: Run Snyk Code to check for vulnerabilities
+          run: snyk code test --severity-threshold=high --sarif --no-markdown | tee snyk-code.sarif
+          continue-on-error: true
+          env:
+            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+        - name: Upload dependency results to GitHub Code Scanning
+          uses: github/codeql-action/upload-sarif@v1
+          with:
+            sarif_file: snyk-code.sarif
+
+  snyk-container:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@master
+
+        - name: Install Snyk
+          uses: snyk/actions/setup@master
+
+        - name: Set up Docker Buildx
+          uses: docker/setup-buildx-action@v1.6.0
+          with:
+            install: true
+
+        - name: Build container
+          uses: docker/build-push-action@v2.9.0
+          with:
+            context: .
+            platforms: linux/amd64
+            load: true
+            push: false
+            tags: artis3n/ansible_galaxy_collection:latest
+
+        - name: Run Snyk Container to check for vulnerabilities
+          run: snyk container test --severity-threshold=high --platform=linux/amd64 --file=Dockerfile --sarif-file-output=snyk-container.sarif --exclude-base-image-vulns artis3n/ansible_galaxy_collection:latest
+          continue-on-error: true
+          env:
+            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+        - name: Upload dependency results to GitHub Code Scanning
+          uses: github/codeql-action/upload-sarif@v1
+          with:
+            sarif_file: snyk-container.sarif

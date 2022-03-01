@@ -42,7 +42,7 @@
     "@babel/preset-env": "^7.16.11",
     "@types/jest": "^27.4.0",
     "@types/js-yaml": "^4.0.2",
-    "@types/node": "^17.0.14",
+    "@types/node": "^17.0.21",
     "@types/semver": "^7.3.8",
     "@types/validator": "^13.7.1",
     "jest": "^27.4.7",

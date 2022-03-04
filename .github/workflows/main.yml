@@ -4,7 +4,7 @@ on: [pull_request]
 
 env:
   RUNNER_TEMP: /tmp
-  TEST_ARTIFACT_VERSION: 0.6.21
+  TEST_ARTIFACT_VERSION: 0.6.22
 
 jobs:
   local_tests:
@@ -83,7 +83,7 @@ jobs:
           install: true
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1.14.0
+        uses: docker/login-action@v1.14.1
         with:
           registry: ghcr.io
           username: ${{ github.actor }}

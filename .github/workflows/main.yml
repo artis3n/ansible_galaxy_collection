@@ -4,7 +4,7 @@ on: [pull_request]
 
 env:
   RUNNER_TEMP: /tmp
-  TEST_ARTIFACT_VERSION: 0.6.18
+  TEST_ARTIFACT_VERSION: 0.6.22
 
 jobs:
   local_tests:
@@ -12,15 +12,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2.4.0
 
-      - uses: actions/setup-node@v2.5.1
+      - uses: actions/setup-node@v3
         with:
-          node-version: '17.x'
+          node-version-file: .node-version
           cache: 'npm'
 
       - name: Install Dependencies
-        run: |
-          npm install -g npm
-          npm ci
+        run: npm ci
 
       - name: Check Format
         run: npm run format-check
@@ -85,7 +83,7 @@ jobs:
           install: true
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1.12.0
+        uses: docker/login-action@v1.14.1
         with:
           registry: ghcr.io
           username: ${{ github.actor }}

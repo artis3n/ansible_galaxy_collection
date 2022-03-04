@@ -686,7 +686,9 @@ new AsYouType('US').input('2133734') === '(213) 373-4'
 
 The formatter instance also provides the following getters:
 
- * `getNumber(): PhoneNumber` — Returns the [`PhoneNumber`](#phonenumber). Will return `undefined` if no [national (significant) number](#national-significant-number) digits have been entered so far, or if no `defaultCountry`/`defaultCallingCode` has been set and the user enters a phone number not in international format.
+ * `getNumber(): PhoneNumber?` — Returns the [`PhoneNumber`](#phonenumber). Will return `undefined` if no [national (significant) number](#national-significant-number) digits have been entered so far, or if no `defaultCountry`/`defaultCallingCode` has been set and the user enters a phone number not in international format.
+
+ * `getNumberValue(): string?` — Returns the phone number in [`E.164`](https://en.wikipedia.org/wiki/E.164) format. For example, for country `"US"` and input `"(222) 333-4444"` it will return `"+12223334444"`. Will return `undefined` if no digits have been input, or when inputting a phone number in national format and no default country or default "country calling code" have been set.
 
  * `getChars(): string` — Returns the phone number characters entered by the user: digits and a `+` sign (if present). Returns an empty string if no phone number characters have been input.
 
@@ -729,7 +731,7 @@ asYouType.getTemplate() === 'xx xxx xxx xxxx'
 
  * `isInternational(): boolean` — Returns `true` if the phone number is being input in international format. In other words, returns `true` if and only if the parsed phone number starts with a `"+"`.
 
- * `getCallingCode(): string?` — Returns the ["country calling code"](#country-calling-code) part of the phone number. Returns `undefined` if the number is not being input in international format. Returns "country calling code" for ["non-geographic"](#non-geographic) phone numbering plans too.
+ * `getCallingCode(): string?` — Returns the ["country calling code"](#country-calling-code) part of the phone number. Returns `undefined` if the number is not being input in international format, or if no valid "country calling code" has been entered. Supports ["non-geographic"](#non-geographic) phone numbering plans: even though those aren't technically "countries", they have their own "country calling codes" too.
 
  * `getCountry(): string?` — Returns a two-letter [country code](#country-code) of the phone number. Returns `undefined` for ["non-geographic"](#non-geographic) phone numbering plans. Returns `undefined` if no phone number has been input yet.
 

@@ -33,7 +33,7 @@ jobs:
       - uses: actions/checkout@v3.0.0
 
       - name: Set up action.yml
-        run: cp action_ci.yml > action.yml
+        run: cp action_ci.yml action.yml
 
       - name: Test the action
         uses: ./

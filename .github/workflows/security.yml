@@ -30,6 +30,12 @@ jobs:
         uses: github/codeql-action/upload-sarif@v1
         with:
           sarif_file: snyk.sarif
+      
+      - name: Upload Snyk vulnerabilities
+        run: snyk monitor --all-projects --dev
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
   snyk-code:
     runs-on: ubuntu-latest
@@ -82,3 +88,9 @@ jobs:
           uses: github/codeql-action/upload-sarif@v1
           with:
             sarif_file: snyk-container.sarif
+        
+        - name: Upload Snyk Container results
+          run: snyk container monitor --platform=linux/amd64 --file=Dockerfile artis3n/ansible_galaxy_collection:latest
+          continue-on-error: true
+          env:
+            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}

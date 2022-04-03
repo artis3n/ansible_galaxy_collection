@@ -1,10 +1,16 @@
-FROM node:17-slim
+FROM node:17-slim AS builder
+
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . ./
+RUN npm run build
+
+FROM node:17-slim AS runner
 
 # Required for python inside Docker containers
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
-
-WORKDIR /app
 
 RUN apt-get update \
     && apt-get upgrade -y \
@@ -18,9 +24,13 @@ RUN apt-get update \
 RUN  npm install -g npm \
      && python3 -m pip install --no-cache-dir --upgrade pip
 
+WORKDIR /app
+
 COPY requirements.txt ./
 RUN python3 -m pip install --no-cache-dir -r requirements.txt
-COPY . .
+
+COPY --from=builder /app/dist ./dist
+COPY package*.json ./
 RUN npm ci --production \
     && npm cache clean --force
 

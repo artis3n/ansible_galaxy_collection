@@ -8,7 +8,7 @@ jobs:
   snyk-deps:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3.0.0
 
       - uses: actions/setup-python@v3
         with:
@@ -30,11 +30,17 @@ jobs:
         uses: github/codeql-action/upload-sarif@v1
         with:
           sarif_file: snyk.sarif
+      
+      - name: Upload Snyk vulnerabilities
+        run: snyk monitor --all-projects --dev
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
   snyk-code:
     runs-on: ubuntu-latest
     steps:
-        - uses: actions/checkout@master
+        - uses: actions/checkout@v3.0.0
 
         - name: Install Snyk
           uses: snyk/actions/setup@master
@@ -53,7 +59,7 @@ jobs:
   snyk-container:
     runs-on: ubuntu-latest
     steps:
-        - uses: actions/checkout@master
+        - uses: actions/checkout@v3.0.0
 
         - name: Install Snyk
           uses: snyk/actions/setup@master
@@ -64,7 +70,7 @@ jobs:
             install: true
 
         - name: Build container
-          uses: docker/build-push-action@v2.9.0
+          uses: docker/build-push-action@v2.10.0
           with:
             context: .
             platforms: linux/amd64
@@ -82,3 +88,9 @@ jobs:
           uses: github/codeql-action/upload-sarif@v1
           with:
             sarif_file: snyk-container.sarif
+        
+        - name: Upload Snyk Container results
+          run: snyk container monitor --platform=linux/amd64 --file=Dockerfile artis3n/ansible_galaxy_collection:latest
+          continue-on-error: true
+          env:
+            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}

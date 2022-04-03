@@ -150,19 +150,6 @@ If you already have a collection archive built and merely want to publish it to 
     build: false
 ```
 
-## Speed Up Runtime With The Docker Image
-
-Not the common way to invoke actions, but save ~3 minutes in your invocation by using the built image instead of building the image from source during your action invocation. It takes 2 minutes alone just to build ansible from its wheel.
-
-If you want to use the Docker container, use the syntax below. You will need to pin to a specific tag, not a general value like `v2`.
-
-```yaml
-- name: Build and Deploy Collection
-  uses: docker://ghcr.io/artis3n/ansible_galaxy_collection@v2.4.2
-  with:
-    api_key: '${{ secrets.GALAXY_API_KEY }}'
-```
-
 # Exit Codes
 
 - `0`: `Ok`

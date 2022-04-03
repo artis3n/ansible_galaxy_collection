@@ -1,4 +1,4 @@
-FROM node:17-slim
+FROM node:16-slim
 
 # Required for python inside Docker containers
 ENV LC_ALL C.UTF-8
@@ -8,7 +8,7 @@ WORKDIR /app
 
 RUN apt-get update \
     && apt-get upgrade -y \
-    && apt-get install -y --no-install-recommends python3 python3-pip python3-setuptools python3-wheel \
+    && apt-get install -y --no-install-recommends python3 python3-pip python3-setuptools \
     # Slim down layer size
     && apt-get autoremove -y \
     && apt-get autoclean -y \

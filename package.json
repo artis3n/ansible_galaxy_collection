@@ -17,7 +17,7 @@
     "docker": "docker build -t artis3n/ansible_galaxy_collection:local ."
   },
   "engines": {
-    "node": "~16"
+    "node": "~17"
   },
   "repository": {
     "type": "git",

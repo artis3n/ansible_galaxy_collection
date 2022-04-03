@@ -1,4 +1,6 @@
 ---
+# Only used in the CI workflow to test changes to the action before publishing a release
+# Should be a mirror image of action.yml except 'runs.image' is Dockerfile
 name: 'Deploy Ansible Galaxy Collection'
 description: 'Builds and deploys a Collection to Ansible Galaxy'
 author: 'Artis3n <dev@artis3nal.com>'
@@ -53,8 +55,7 @@ inputs:
     default: 'galaxy.yml'
 runs:
   using: 'docker'
-  # Takes ~3 minutes to build the container so speed up consumer invocations by using pre-built image
-  image: docker://ghcr.io/artis3n/ansible_galaxy_collection:v2.6.6
+  image: Dockerfile
 branding:
   icon: 'box'
   color: 'purple'

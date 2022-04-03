@@ -4,7 +4,7 @@ on: [pull_request]
 
 env:
   RUNNER_TEMP: /tmp
-  TEST_ARTIFACT_VERSION: 0.6.23
+  TEST_ARTIFACT_VERSION: 0.6.28
 
 jobs:
   local_tests:
@@ -32,6 +32,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3.0.0
 
+      - name: Set up action.yml
+        run: cp action_ci.yml action.yml
+
       - name: Test the action
         uses: ./
         with:
@@ -51,6 +54,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.0.0
+
+      - name: Set up action.yml
+        run: cp action_ci.yml action.yml
 
       - name: Test the action - only build
         uses: ./

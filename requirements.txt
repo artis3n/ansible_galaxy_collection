@@ -1,1 +1,1 @@
-ansible==5.5.0
+ansible==5.7.0

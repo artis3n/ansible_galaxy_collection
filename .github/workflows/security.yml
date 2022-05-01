@@ -65,7 +65,7 @@ jobs:
           uses: snyk/actions/setup@master
 
         - name: Set up Docker Buildx
-          uses: docker/setup-buildx-action@v1.6.0
+          uses: docker/setup-buildx-action@v1.7.0
           with:
             install: true
 

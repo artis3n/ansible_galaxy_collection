@@ -70,7 +70,7 @@ jobs:
             install: true
 
         - name: Build container
-          uses: docker/build-push-action@v2.10.0
+          uses: docker/build-push-action@v3.0.0
           with:
             context: .
             platforms: linux/amd64

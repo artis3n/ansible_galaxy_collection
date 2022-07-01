@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Semver release
-        uses: technote-space/release-github-actions@v7.2.3
+        uses: technote-space/release-github-actions@v7.2.4
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CLEAN_TARGETS: ''
@@ -37,7 +37,7 @@ jobs:
 
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@v4
         with:
           images: |
             ghcr.io/${{ env.IMAGE_NAME }}

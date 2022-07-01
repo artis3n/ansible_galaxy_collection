@@ -4,7 +4,7 @@ on: [pull_request]
 
 env:
   RUNNER_TEMP: /tmp
-  TEST_ARTIFACT_VERSION: 0.8.0
+  TEST_ARTIFACT_VERSION: 0.8.1
 
 jobs:
   local_tests:
@@ -98,7 +98,7 @@ jobs:
 
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@v4
         with:
           images: |
             ghcr.io/artis3n/ansible_galaxy_collection-testartifact

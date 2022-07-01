@@ -1,13 +1,12 @@
 {
   "name": "ansible_galaxy_collection",
-  "version": "2.7.0",
+  "version": "2.8.0",
   "description": "Deploy a collection to Ansible Galaxy",
   "main": "dist/index.js",
   "scripts": {
     "test": "npm run test:unit",
     "test:unit": "jest --coverage",
     "test:e2e": "act -j test_deploy -s GALAXY_API_KEY='fakekey' --container-architecture linux/amd64",
-    "test:snyk": "act -j snyk-deps -s SNYK_TOKEN=$(snyk config get api) --container-architecture linux/amd64",
     "build": "tsc",
     "dev": "tsc -w",
     "format": "prettier --write **/*.ts",

@@ -1,6 +1,6 @@
 # ansible_galaxy_collection
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/artis3n/ansible_galaxy_collection/Testing%20the%20Action)](https://github.com/artis3n/ansible_galaxy_collection/actions)
+[![Pipeline](https://github.com/artis3n/ansible_galaxy_collection/actions/workflows/release.yml/badge.svg)](https://github.com/artis3n/ansible_galaxy_collection/actions/workflows/release.yml)
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/artis3n/ansible_galaxy_collection)](https://github.com/artis3n/ansible_galaxy_collection/releases)
 ![GitHub last commit](https://img.shields.io/github/last-commit/artis3n/ansible_galaxy_collection)
 ![GitHub](https://img.shields.io/github/license/artis3n/ansible_galaxy_collection)

@@ -4,7 +4,7 @@ on: [pull_request]
 
 env:
   RUNNER_TEMP: /tmp
-  TEST_ARTIFACT_VERSION: 0.8.5
+  TEST_ARTIFACT_VERSION: 0.8.6
 
 jobs:
   local_tests:
@@ -106,7 +106,7 @@ jobs:
             type=raw,value=SNAPSHOT-${{ github.sha }}
 
       - name: Build and Push
-        uses: docker/build-push-action@v3.0.0
+        uses: docker/build-push-action@v3.1.0
         with:
           context: .
           platforms: linux/amd64

@@ -41,18 +41,6 @@ inputs:
 #      Defaults to `patch`.
 #    required: false
 #    default: patch
-  galaxy_config_file:
-    description: |
-      DEPRECATED.
-
-      A collection must have a galaxy.yml file that contains the necessary information to build a
-      collection artifact.
-
-      Defaults to "galaxy.yml" in the `collection_dir`, which is by default the project root.
-
-      This parameter is deprecated as Ansible Galaxy requires the file to be named `galaxy.yml` and to exist in the root of your Collection. Use `collection_dir` to specify a non-root directory for your Collection.
-    required: false
-    default: 'galaxy.yml'
 runs:
   using: 'docker'
   image: Dockerfile

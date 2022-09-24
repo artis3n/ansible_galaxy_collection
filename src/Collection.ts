@@ -82,6 +82,6 @@ export class Collection {
   ): Promise<number> {
     const galaxyCommandPath = await which('ansible-galaxy', true);
     // If a custom directory is passed in, use that. Otherwise, do not specify a custom location.
-    return exec(`${galaxyCommandPath} collection publish ${this}.tar.gz --api-key=${this.apiKey}`);
+    return exec(`${galaxyCommandPath} collection publish ${this}.tar.gz --token=${this.apiKey}`);
   }
 }

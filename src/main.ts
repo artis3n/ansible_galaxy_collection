@@ -18,12 +18,8 @@ try {
   const willPublish: boolean = (getInput('publish').toLowerCase().trim() || 'true') == 'true';
   // Will always be a string, but may be an empty string if the parameter is not defined
   const maybeGalaxyVersion = getInput('galaxy_version');
-  /**
-   * @deprecated You probably want 'collection_dir,' not this parameter.
-   */
-  const galaxyConfigFile = getInput('galaxy_config_file') || 'galaxy.yml';
 
-  const [galaxyConfigResolvedPath, galaxyConfig] = prepareConfig(galaxyConfigFile, collectionLocation);
+  const [galaxyConfigResolvedPath, galaxyConfig] = prepareConfig(collectionLocation);
   let collection: Collection;
   try {
     collection = new Collection({
@@ -78,10 +74,10 @@ try {
   setFailed(error.message);
 }
 
-function prepareConfig(configFileName: string, collectionLocation: string): [string, GalaxyConfig] {
-  let galaxyConfigFilePath = configFileName;
+function prepareConfig(collectionLocation: string): [string, GalaxyConfig] {
+  let galaxyConfigFilePath = 'galaxy.yml';
   if (collectionLocation.length > 0) {
-    galaxyConfigFilePath = join(collectionLocation, configFileName);
+    galaxyConfigFilePath = join(collectionLocation, 'galaxy.yml');
   }
   coreDebug(`Using galaxy config file locate at: ${galaxyConfigFilePath}`);
 

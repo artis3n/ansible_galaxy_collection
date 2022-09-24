@@ -4,14 +4,10 @@ description: 'Builds and deploys a Collection to Ansible Galaxy'
 author: 'Artis3n <dev@artis3nal.com>'
 inputs:
   api_key:
-    description: |
-      Ansible Galaxy API key. This should be stored in a Secret on Github.
-
-      See https://help.github.com/en/github/automating-your-workflow-with-github-actions/virtual-environments-for-github-actions#creating-and-using-secrets-encrypted-variables.
+    description: Ansible Galaxy API key. We recommend you store this as a GitHub Secret.
     required: true
   collection_dir:
-    description: |
-      The directory in which the Ansible Collection is stored. This defaults to the project root.
+    description: The directory in which the Ansible Collection is stored. This defaults to the project root.
     required: false
     default: './'
   build:
@@ -29,6 +25,10 @@ inputs:
   galaxy_version:
     description: Dynamically inject a semver-compatible version into your galaxy.yml file.
     required: false
+  galaxy_url:
+    description: The Galaxy API server URL. Targets https://galaxy.ansible.com/ by default. Modify if you are using an alternate Galaxy server, such as RedHat Automation Hub.
+    required: false
+    default: 'https://galaxy.ansible.com'
 #  galaxy_version_commit:
 #    description: The Action will write the `galaxy_version` value into your `galaxy.yml` and commit it.
 #    required: false
@@ -39,18 +39,6 @@ inputs:
 #      Defaults to `patch`.
 #    required: false
 #    default: patch
-  galaxy_config_file:
-    description: |
-      DEPRECATED.
-
-      A collection must have a galaxy.yml file that contains the necessary information to build a
-      collection artifact.
-
-      Defaults to "galaxy.yml" in the `collection_dir`, which is by default the project root.
-
-      This parameter is deprecated as Ansible Galaxy requires the file to be named `galaxy.yml` and to exist in the root of your Collection. Use `collection_dir` to specify a non-root directory for your Collection.
-    required: false
-    default: 'galaxy.yml'
 runs:
   using: 'docker'
   # Takes ~3 minutes to build the container so speed up consumer invocations by using pre-built image

@@ -24,7 +24,8 @@ An example workflow using this action can be found [here](https://github.com/art
 
 **Required**: Ansible Galaxy API key.
 
-This should be stored in a Secret on GitHub. See [Creating and Using Secrets Encrypted Variables](https://help.github.com/en/github/automating-your-workflow-with-github-actions/virtual-environments-for-github-actions#creating-and-using-secrets-encrypted-variables).
+This should be protected as a secret in your workflow.
+See [Creating and Using Secrets Encrypted Variables](https://help.github.com/en/github/automating-your-workflow-with-github-actions/virtual-environments-for-github-actions#creating-and-using-secrets-encrypted-variables).
 
 ## collection_dir
 
@@ -98,13 +99,28 @@ This parameter is deprecated as Ansible Galaxy requires the file to be named `ga
 
 # Example Usage
 
-Default usage:
+Minimal complete example:
 
 ```yaml
-- name: Build and Deploy Collection
-  uses: artis3n/ansible_galaxy_collection@v2
-  with:
-    api_key: '${{ secrets.GALAXY_API_KEY }}'
+---
+name: Deploy Collection
+
+# Trigger the workflow however you prefer
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build and Deploy Collection
+        uses: artis3n/ansible_galaxy_collection@v2
+        with:
+          api_key: '${{ secrets.GALAXY_API_KEY }}'
 ```
 
 Pass in `galaxy.yml` version as an input parameter:

@@ -1,0 +1,7 @@
+node_modules
+.idea
+.dccache
+
+src/*.js
+dist
+coverage

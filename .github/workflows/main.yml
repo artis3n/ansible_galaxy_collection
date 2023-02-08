@@ -4,13 +4,13 @@ on: [pull_request]
 
 env:
   RUNNER_TEMP: /tmp
-  TEST_ARTIFACT_VERSION: 0.8.10
+  TEST_ARTIFACT_VERSION: 0.8.11
 
 jobs:
   local_tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.0.2
+      - uses: actions/checkout@v3
 
       - uses: actions/setup-node@v3
         with:
@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3.0.2
+      - uses: actions/checkout@v3
 
       - name: Set up action.yml
         run: cp action_ci.yml action.yml
@@ -54,7 +54,7 @@ jobs:
   test_build_then_publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.0.2
+      - uses: actions/checkout@v3
 
       - name: Set up action.yml
         run: cp action_ci.yml action.yml
@@ -82,7 +82,7 @@ jobs:
   snapshot:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.0.2
+      - uses: actions/checkout@v3
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2.2.1
@@ -90,7 +90,7 @@ jobs:
           install: true
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v2.1.0
+        uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -98,7 +98,7 @@ jobs:
 
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@v4.1.1
+        uses: docker/metadata-action@v4
         with:
           images: |
             ghcr.io/artis3n/ansible_galaxy_collection-testartifact
@@ -106,7 +106,7 @@ jobs:
             type=raw,value=SNAPSHOT-${{ github.sha }}
 
       - name: Build and Push
-        uses: docker/build-push-action@v3.2.0
+        uses: docker/build-push-action@v4
         with:
           context: .
           platforms: linux/amd64

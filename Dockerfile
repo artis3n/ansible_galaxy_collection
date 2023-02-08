@@ -1,4 +1,4 @@
-FROM node:18-slim AS builder
+FROM node:19-slim AS builder
 
 WORKDIR /app
 COPY package*.json ./
@@ -6,7 +6,7 @@ RUN npm ci
 COPY . ./
 RUN npm run build
 
-FROM node:18-slim AS runner
+FROM node:19-slim AS runner
 
 # Required for python inside Docker containers
 ENV LC_ALL C.UTF-8

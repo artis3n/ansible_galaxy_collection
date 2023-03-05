@@ -10,6 +10,8 @@ name: Release
 jobs:
   release:
     name: Release GitHub Actions
+    needs:
+      - deploy
     runs-on: ubuntu-latest
     steps:
       - name: Semver release

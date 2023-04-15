@@ -29,7 +29,8 @@
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "yarn install",
-	"onCreateCommand": "npm install"
+	"onCreateCommand": "sudo apt update && sudo apt full-upgrade -y",
+	"postStartCommand": "git pull --prune; npm install"
 
 	// Configure tool-specific properties.
 	// "customizations": {},

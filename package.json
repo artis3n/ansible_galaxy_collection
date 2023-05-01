@@ -34,7 +34,7 @@
     "@actions/io": "^1.1.1",
     "class-validator": "^0.14.0",
     "js-yaml": "^4.1.0",
-    "semver": "^7.3.7"
+    "semver": "^7.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",

@@ -1,2 +1,2 @@
-ansible==7.5.0
+ansible==8.0.0
 distlib==0.3.6

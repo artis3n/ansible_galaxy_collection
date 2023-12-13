@@ -1,4 +1,4 @@
-FROM node:18-slim AS builder
+FROM node:20-slim AS builder
 
 WORKDIR /app
 COPY package*.json ./
@@ -6,7 +6,7 @@ RUN npm ci
 COPY . ./
 RUN npm run build
 
-FROM node:18-slim AS runner
+FROM node:20-slim AS runner
 
 # Required for python inside Docker containers
 ENV LC_ALL C.UTF-8
@@ -22,12 +22,12 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 RUN  npm install -g npm \
-     && python3 -m pip install --no-cache-dir --upgrade pip
+     && python3 -m pip install --no-cache-dir --upgrade --break-system-packages pip
 
 WORKDIR /app
 
 COPY requirements.txt ./
-RUN python3 -m pip install --no-cache-dir -r requirements.txt
+RUN python3 -m pip install --no-cache-dir --break-system-packages -r requirements.txt
 
 COPY --from=builder /app/dist ./dist
 COPY package*.json ./

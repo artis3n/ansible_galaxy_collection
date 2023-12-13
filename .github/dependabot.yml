@@ -4,50 +4,34 @@ updates:
     directory: '/'
     schedule:
       interval: monthly
-    reviewers:
-      - artis3n
-    assignees:
-      - artis3n
-    commit-message:
-      prefix: fix
-      prefix-development: chore
-      include: scope
+    groups:
+      all:
+        patterns:
+          - "*"
 
   - package-ecosystem: github-actions
     directory: '/'
     schedule:
       interval: monthly
-    reviewers:
-      - artis3n
-    assignees:
-      - artis3n
-    commit-message:
-      prefix: fix
-      prefix-development: chore
-      include: scope
+    groups:
+      all:
+        patterns:
+          - "*"
 
   - package-ecosystem: docker
     directory: '/'
     schedule:
       interval: monthly
-    reviewers:
-      - artis3n
-    assignees:
-      - artis3n
-    commit-message:
-      prefix: fix
-      prefix-development: chore
-      include: scope
+    groups:
+      all:
+        patterns:
+          - "*"
 
   - package-ecosystem: pip
     directory: '/'
     schedule:
       interval: monthly
-    reviewers:
-      - artis3n
-    assignees:
-      - artis3n
-    commit-message:
-      prefix: fix
-      prefix-development: chore
-      include: scope
+    groups:
+      all:
+        patterns:
+          - "*"

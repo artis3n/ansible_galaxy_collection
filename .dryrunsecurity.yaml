@@ -1,0 +1,6 @@
+sensitiveCodepaths:
+allowedAuthors:
+  usernames:
+    - artis3n
+notificationList:
+  - '@artis3n'

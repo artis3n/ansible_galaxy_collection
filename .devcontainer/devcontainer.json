@@ -3,19 +3,18 @@
 {
 	"name": "Node.js & TypeScript",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/typescript-node:0-20",
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:22-bookworm",
 	"features": {
 		"ghcr.io/devcontainers/features/common-utils:2": {
-			"installOhMyZsh": true,
-			"upgradePackages": true
+			"version": "3.12",
+			"installTools": false
 		},
-		"ghcr.io/devcontainers/features/docker-in-docker:2": {
-			"dockerDashComposeVersion": "v2"
-		},
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
 		"ghcr.io/devcontainers/features/git:1": {},
 		"ghcr.io/devcontainers/features/github-cli:1": {},
-		"ghcr.io/dhoeric/features/act:1": {},
-		"ghcr.io/devcontainers-contrib/features/zsh-plugins:0": {
+		"ghcr.io/devcontainers/features/python:1": {},
+		"ghcr.io/devcontainers-extra/features/act:1": {},
+		"ghcr.io/devcontainers-extra/features/zsh-plugins:0": {
 			"plugins": "zsh-syntax-highlighting",
 			"omzPlugins": "https://github.com/zsh-users/zsh-syntax-highlighting.git"
 		}

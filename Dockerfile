@@ -1,4 +1,4 @@
-FROM node:20-slim AS builder
+FROM node:22-slim AS builder
 
 WORKDIR /app
 COPY package*.json ./
@@ -6,11 +6,11 @@ RUN npm ci
 COPY . ./
 RUN npm run build
 
-FROM node:20-slim AS runner
+FROM node:22-slim AS runner
 
 # Required for python inside Docker containers
-ENV LC_ALL C.UTF-8
-ENV LANG C.UTF-8
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
 
 RUN apt-get update \
     && apt-get upgrade -y \

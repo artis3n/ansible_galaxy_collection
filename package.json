@@ -1,6 +1,6 @@
 {
   "name": "ansible_galaxy_collection",
-  "version": "2.10.1",
+  "version": "2.11.0",
   "description": "Deploy a collection to Ansible Galaxy",
   "main": "dist/index.js",
   "scripts": {
@@ -16,7 +16,7 @@
     "docker": "docker build -t artis3n/ansible_galaxy_collection:local ."
   },
   "engines": {
-    "node": "~20"
+    "node": "~22"
   },
   "repository": {
     "type": "git",

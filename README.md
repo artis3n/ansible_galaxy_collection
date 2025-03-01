@@ -5,7 +5,6 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/artis3n/ansible_galaxy_collection)
 ![GitHub](https://img.shields.io/github/license/artis3n/ansible_galaxy_collection)
 [![GitHub followers](https://img.shields.io/github/followers/artis3n?style=social)](https://github.com/artis3n/)
-[![Twitter Follow](https://img.shields.io/twitter/follow/artis3n?style=social)](https://twitter.com/Artis3n)
 
 Deploy a Collection to Ansible Galaxy.
 

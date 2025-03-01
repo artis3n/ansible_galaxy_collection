@@ -54,7 +54,7 @@ inputs:
 runs:
   using: 'docker'
   # Takes ~3 minutes to build the container so speed up consumer invocations by using pre-built image
-  image: docker://ghcr.io/artis3n/ansible_galaxy_collection:v2.10.1
+  image: docker://ghcr.io/artis3n/ansible_galaxy_collection:v2.11.0
 branding:
   icon: 'box'
   color: 'purple'

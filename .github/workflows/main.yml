@@ -4,7 +4,7 @@ on: [pull_request]
 
 env:
   RUNNER_TEMP: /tmp
-  TEST_ARTIFACT_VERSION: 0.10.10
+  TEST_ARTIFACT_VERSION: 0.11.0
 
 jobs:
   local_tests:
@@ -14,7 +14,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version-file: .node-version
+          node-version-file: package.json
           cache: 'npm'
           check-latest: true
 
@@ -106,7 +106,7 @@ jobs:
             type=raw,value=SNAPSHOT-${{ github.sha }}
 
       - name: Build and Push
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
           platforms: linux/amd64

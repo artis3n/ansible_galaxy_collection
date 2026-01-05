@@ -37,7 +37,7 @@
     },
     {
       "description": "Group python deps",
-      "matchManagers": ["pip"],
+      "matchManagers": ["pip_requirements"],
       "groupSlug": "python-deps"
     },
     {

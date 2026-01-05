@@ -36,6 +36,11 @@
       "matchPackageNames": ["!node"]
     },
     {
+      "description": "Group python deps",
+      "matchManagers": ["pip"],
+      "groupSlug": "python-deps"
+    },
+    {
       "description": "Group devcontainer dependencies excluding node version",
       "groupName": "devcontainer-deps",
       "groupSlug": "devcontainer-features",

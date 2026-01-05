@@ -1,0 +1,51 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "schedule:monthly"
+  ],
+  "minimumReleaseAge": "14 days",
+  "pre-commit": {
+    "enabled": true
+  },
+  "prHourlyLimit": 0,
+  "prConcurrentLimit": 0,
+  "packageRules": [
+    {
+      "matchManagers": ["github-actions"],
+      "groupName": "GitHub Actions Updates",
+      "groupSlug": "github-actions"
+    },
+    {
+      "matchManagers": ["pre-commit"],
+      "groupName": "pre-commit hooks",
+      "groupSlug": "pre-commit"
+    },
+    {
+      "description": "Group Node versions",
+      "groupName": "Node version",
+      "groupSlug": "node-version",
+      "matchManagers": ["npm", "dockerfile", "devcontainer"],
+      "matchPackageNames": ["node", "mcr.microsoft.com/devcontainers/typescript-node"]
+    },
+    {
+      "description": "Group node deps",
+      "matchManagers": ["npm"],
+      "groupName": "Node dependencies",
+      "groupSlug": "node-deps",
+      "matchPackageNames": ["!node"]
+    },
+    {
+      "description": "Group python deps",
+      "matchManagers": ["pip_requirements"],
+      "groupSlug": "python-deps"
+    },
+    {
+      "description": "Group devcontainer dependencies excluding node version",
+      "groupName": "devcontainer-deps",
+      "groupSlug": "devcontainer-features",
+      "matchManagers": ["devcontainer"],
+      "matchPackageNames": ["!mcr.microsoft.com/devcontainers/typescript-node"]
+    }
+  ]
+}

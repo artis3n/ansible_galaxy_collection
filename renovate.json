@@ -1,6 +1,41 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
+    "config:recommended",
+    "schedule:monthly"
+  ].
+  "releaseAge": "14days",
+  "packageRules": [
+    {
+      "matchManagers": ["github-actions"],
+      "groupName": "GitHub Actions Updates",
+      "groupSlug": "github-actions"
+    },
+    {
+      "matchManagers": ["pre-commit"],
+      "groupName": "pre-commit hooks",
+      "groupSlug": "pre-commit"
+    },
+    {
+      "description": "Group Node versions",
+      "groupName": "Node version",
+      "groupSlug": "node-version",
+      "matchManagers": ["npm", "dockerfile", "devcontainer"],
+      "matchPackageNames": ["node", "mcr.microsoft.com/devcontainers/typescript-node"]
+    },
+    {
+      "description": "Group node deps",
+      "matchManagers": ["npm"],
+      "groupName": "Node dependencies",
+      "groupSlug": "node-deps",
+      "matchPackageNames": ["!node"]
+    },
+    {
+      "description": "Group devcontainer dependencies excluding node version",
+      "groupName": "devcontainer-deps",
+      "groupSlug": "devcontainer-features",
+      "matchManagers": ["devcontainer"],
+      "matchPackageNames": ["!mcr.microsoft.com/devcontainers/typescript-node"]
+    }
   ]
 }

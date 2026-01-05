@@ -5,6 +5,11 @@
     "schedule:monthly"
   ],
   "minimumReleaseAge": "14 days",
+  "pre-commit": {
+    "enabled": true
+  },
+  "prHourlyLimit": 0,
+  "prConcurrentLimit": 0,
   "packageRules": [
     {
       "matchManagers": ["github-actions"],

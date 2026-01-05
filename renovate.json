@@ -3,8 +3,8 @@
   "extends": [
     "config:recommended",
     "schedule:monthly"
-  ].
-  "releaseAge": "14days",
+  ],
+  "releaseAge": "14 days",
   "packageRules": [
     {
       "matchManagers": ["github-actions"],

@@ -6,23 +6,29 @@ RUN npm ci
 COPY . ./
 RUN npm run build
 
-FROM node:24-slim AS runner
+FROM debian:13-slim AS runner
 
 # Required for python inside Docker containers
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 
+# Install Node and Python
+ARG NODE_MAJOR=24
 RUN apt-get update \
     && apt-get upgrade -y \
-    && apt-get install -y --no-install-recommends python3 python3-pip python3-setuptools python3-wheel \
+    && apt-get install -y --no-install-recommends \
+       ca-certificates curl \
+       python3 python3-pip python3-setuptools python3-wheel \
+    # Install Node.js
+    && curl -fsSL https://deb.nodesource.com/setup_24.x | bash - \
+    && apt-get update && apt-get install -y nodejs \
     # Slim down layer size
     && apt-get autoremove -y \
     && apt-get autoclean -y \
     # Remove apt-get cache from the layer to reduce container size
     && rm -rf /var/lib/apt/lists/*
 
-RUN  npm install -g npm \
-     && python3 -m pip install --no-cache-dir --upgrade --break-system-packages pip
+RUN  npm install -g npm
 
 WORKDIR /app
 

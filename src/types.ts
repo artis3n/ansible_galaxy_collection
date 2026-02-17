@@ -1,4 +1,4 @@
-import { GalaxyConfig } from './GalaxyConfig.js';
+import { GalaxyConfig } from './GalaxyConfig.ts';
 
 export type GalaxyConfigFile = {
   namespace?: string;

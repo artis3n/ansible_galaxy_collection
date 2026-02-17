@@ -1,7 +1,9 @@
-import { GalaxyConfig } from '../src/GalaxyConfig';
+import { describe, it, expect } from 'vitest';
+
+import { GalaxyConfig } from '../src/GalaxyConfig.js';
 
 describe('GalaxyConfig', () => {
-  test('sets a new version if valid semver', () => {
+  it('sets a new version if valid semver', () => {
     const newVersion = '1.1.5';
     const config = new GalaxyConfig({
       version: '1.1.0',
@@ -10,7 +12,7 @@ describe('GalaxyConfig', () => {
     expect(config.version).toEqual(newVersion);
   });
 
-  test('rejects a new version if not valid semver', () => {
+  it('rejects a new version if not valid semver', () => {
     const newVersion = '1.1.4s';
     const config = new GalaxyConfig({
       version: '1.1.0',

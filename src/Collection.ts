@@ -1,9 +1,9 @@
 import { IsNotEmpty } from 'class-validator';
-import { ExecOptions } from '@actions/exec/lib/interfaces';
+import { type ExecOptions } from '@actions/exec';
 
-import { CollectionInput } from './types';
-import { IsSemver } from './decorators';
-import { GalaxyConfig } from './GalaxyConfig';
+import { type CollectionInput } from './types.ts';
+import { IsSemver } from './decorators.ts';
+import { GalaxyConfig } from './GalaxyConfig.ts';
 
 /**
  * An Ansible Galaxy Collection.

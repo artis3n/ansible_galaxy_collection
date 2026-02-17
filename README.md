@@ -88,14 +88,6 @@ The Action also expects the built archive to be named in the default `ansible-ga
 
 e.g. `artis3n-mycollection-1.0.0.tar.gz`
 
-## galaxy_config_file (Deprecated)
-
-**Default**: `galaxy.yml`
-
-A collection must have a galaxy.yml file that contains the necessary information to build a collection artifact. Defaults to "galaxy.yml" in the `collection_dir`.
-
-This parameter is deprecated as Ansible Galaxy requires the file to be named `galaxy.yml` and to exist in the root of your Collection. Use `collection_dir` to specify a non-root directory for your Collection.
-
 # Example Usage
 
 Minimal complete example:
@@ -114,10 +106,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
 
       - name: Build and Deploy Collection
-        uses: artis3n/ansible_galaxy_collection@v2
+        uses: artis3n/ansible_galaxy_collection@v3
         with:
           api_key: '${{ secrets.GALAXY_API_KEY }}'
 ```
@@ -129,7 +121,7 @@ Pass in `galaxy.yml` version as an input parameter:
   run: echo "RELEASE_VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
 
 - name: Injecting a dynamic Collection version
-  uses: artis3n/ansible_galaxy_collection@v2
+  uses: artis3n/ansible_galaxy_collection@v3
   with:
     api_key: '${{ secrets.GALAXY_API_KEY }}'
     galaxy_version: '${{ env.RELEASE_VERSION }}'
@@ -139,7 +131,7 @@ If your Collection root is not in your repo root:
 
 ```yaml
 - name: When the Collection is not in the project root
-  uses: artis3n/ansible_galaxy_collection@v2
+  uses: artis3n/ansible_galaxy_collection@v3
   with:
     api_key: '${{ secrets.GALAXY_API_KEY }}'
     collection_dir: 'src/my_collection'
@@ -149,7 +141,7 @@ To build a collection **without** publishing it to Ansible Galaxy:
 
 ```yaml
 - name: Build Collection
-  uses: artis3n/ansible_galaxy_collection@v2
+  uses: artis3n/ansible_galaxy_collection@v3
   with:
     api_key: '${{ secrets.GALAXY_API_KEY }}'
     publish: false
@@ -159,7 +151,7 @@ If you already have a collection archive built and merely want to publish it to 
 
 ```yaml
 - name: Publish Collection
-  uses: artis3n/ansible_galaxy_collection@v2
+  uses: artis3n/ansible_galaxy_collection@v3
   with:
     api_key: '${{ secrets.GALAXY_API_KEY }}'
     build: false

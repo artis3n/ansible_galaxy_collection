@@ -1,10 +1,10 @@
 import { validate, validateSync } from 'class-validator';
 import { gt } from 'semver';
-import { ExecOptions } from '@actions/exec/lib/interfaces';
+import { ExecOptions } from '@actions/exec';
 
-import { Collection } from '../src/Collection';
-import { GalaxyConfig } from '../src/GalaxyConfig';
-import { BuildCommand, PublishCommand } from '../src/enums';
+import { Collection } from '../src/Collection.js';
+import { GalaxyConfig } from '../src/GalaxyConfig.js';
+import { BuildCommand, PublishCommand } from '../src/enums.js';
 
 const fakeCollectionDir = 'fake_collection';
 const typicalGalaxyConfig = new GalaxyConfig({

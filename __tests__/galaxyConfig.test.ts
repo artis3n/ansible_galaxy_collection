@@ -1,4 +1,4 @@
-import { GalaxyConfig } from '../src/GalaxyConfig';
+import { GalaxyConfig } from '../src/GalaxyConfig.js';
 
 describe('GalaxyConfig', () => {
   test('sets a new version if valid semver', () => {

@@ -4,6 +4,7 @@
     "module": "nodenext",
     "noEmit": true,
     "rewriteRelativeImportExtensions": true,
+    "verbatimModuleSyntax": true,
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,

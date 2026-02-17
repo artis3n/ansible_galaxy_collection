@@ -1,7 +1,7 @@
 import { IsNotEmpty } from 'class-validator';
-import { ExecOptions } from '@actions/exec';
+import { type ExecOptions } from '@actions/exec';
 
-import { CollectionInput } from './types.ts';
+import { type CollectionInput } from './types.ts';
 import { IsSemver } from './decorators.ts';
 import { GalaxyConfig } from './GalaxyConfig.ts';
 

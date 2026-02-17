@@ -10,7 +10,7 @@ import { readFileSync } from 'fs';
 import { Collection } from './Collection.ts';
 import { ExitCodes } from './enums.ts';
 import { GalaxyConfig } from './GalaxyConfig.ts';
-import { GalaxyConfigFile } from './types.ts';
+import { type GalaxyConfigFile } from './types.ts';
 
 try {
   const apiKey = getInput('api_key', { required: true });

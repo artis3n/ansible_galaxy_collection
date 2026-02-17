@@ -32,8 +32,8 @@ RUN uv pip install --system --compile-bytecode --no-cache -r requirements.txt
 ENV PATH="/app/.venv/bin:$PATH"
 
 COPY src/ /app/src
-COPY package*.json ./
-RUN npm ci --production \
+COPY package*.json tsconfig.json ./
+RUN npm ci --omit=dev \
     && npm cache clean --force
 
 ENTRYPOINT ["node", "--import=tsx", "/app/src/main.ts"]

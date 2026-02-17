@@ -40,12 +40,12 @@
   },
   "devDependencies": {
     "@types/js-yaml": "^4.0.2",
-    "@types/node": "^24.0.0",
+    "@types/node": "^24.10.13",
     "@types/semver": "^7.5.8",
     "@types/validator": "^13.11.9",
     "@vitest/coverage-v8": "^4.0.18",
     "prettier": "^3.2.5",
-    "typescript": "^5.4.3",
+    "typescript": "^5.9.3",
     "vitest": "^4.0.18"
   }
 }

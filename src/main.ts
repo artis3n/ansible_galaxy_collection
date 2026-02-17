@@ -7,10 +7,10 @@ import { join } from 'path';
 import { load as yamlLoad } from 'js-yaml';
 import { readFileSync } from 'fs';
 
-import { Collection } from './Collection.js';
-import { ExitCodes } from './enums.js';
-import { GalaxyConfig } from './GalaxyConfig.js';
-import { GalaxyConfigFile } from './types.js';
+import { Collection } from './Collection.ts';
+import { ExitCodes } from './enums.ts';
+import { GalaxyConfig } from './GalaxyConfig.ts';
+import { GalaxyConfigFile } from './types.ts';
 
 try {
   const apiKey = getInput('api_key', { required: true });
@@ -76,7 +76,7 @@ try {
 }
 
 function prepareConfig(collectionLocation: string): [string, GalaxyConfig] {
-  let galaxyConfigFilePath = "galaxy.yml";
+  let galaxyConfigFilePath = 'galaxy.yml';
   if (collectionLocation.length > 0) {
     galaxyConfigFilePath = join(collectionLocation, galaxyConfigFilePath);
   }

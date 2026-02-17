@@ -2,8 +2,7 @@ import { valid } from 'semver';
 import { dump as yamlDump } from 'js-yaml';
 import { writeFileSync } from 'fs';
 
-import { GalaxyConfigFile } from './types.js';
-
+import { GalaxyConfigFile } from './types.ts';
 
 /**
  * Represents the contents of a galaxy.yml Ansible Galaxy config file.

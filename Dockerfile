@@ -1,11 +1,3 @@
-FROM node:24-slim AS builder
-
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci
-COPY . ./
-RUN npm run build
-
 FROM ghcr.io/astral-sh/uv:python3.14-trixie-slim AS runner
 
 # Required for python inside Docker containers
@@ -39,9 +31,9 @@ COPY requirements.txt ./
 RUN uv pip install --system --compile-bytecode --no-cache -r requirements.txt
 ENV PATH="/app/.venv/bin:$PATH"
 
-COPY --from=builder /app/dist ./dist
+COPY src/ /app/src
 COPY package*.json ./
 RUN npm ci --production \
     && npm cache clean --force
 
-ENTRYPOINT ["node", "/app/dist/main.js"]
+ENTRYPOINT ["node", "--import=tsx", "/app/src/main.ts"]

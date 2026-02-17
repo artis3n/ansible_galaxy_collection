@@ -1,10 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "lib": ["ESNext"],
-    "module": "NodeNext",
-    "outDir": "./dist",
-    "rootDir": "./src",
+    "target": "esnext",
+    "module": "nodenext",
+    "noEmit": true,
+    "rewriteRelativeImportExtensions": true,
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -13,8 +12,7 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true
+    "forceConsistentCasingInFileNames": true
   },
   "exclude": ["node_modules", "**/*.test.ts"]
 }

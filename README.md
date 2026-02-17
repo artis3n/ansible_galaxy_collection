@@ -4,6 +4,7 @@
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/artis3n/ansible_galaxy_collection)](https://github.com/artis3n/ansible_galaxy_collection/releases)
 ![GitHub last commit](https://img.shields.io/github/last-commit/artis3n/ansible_galaxy_collection)
 ![GitHub](https://img.shields.io/github/license/artis3n/ansible_galaxy_collection)
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/artis3n)](https://github.com/sponsors/artis3n)
 [![GitHub followers](https://img.shields.io/github/followers/artis3n?style=social)](https://github.com/artis3n/)
 
 Deploy a Collection to Ansible Galaxy.

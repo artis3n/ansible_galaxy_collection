@@ -1,6 +1,6 @@
 {
   "name": "ansible_galaxy_collection",
-  "version": "2.11.0",
+  "version": "3.0.0",
   "description": "Deploy a collection to Ansible Galaxy",
   "main": "dist/index.js",
   "type": "module",

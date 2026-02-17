@@ -29,9 +29,9 @@
   },
   "homepage": "https://github.com/artis3n/ansible_galaxy_collection#readme",
   "dependencies": {
-    "@actions/core": "^2.0.0",
-    "@actions/exec": "^2.0.0",
-    "@actions/io": "^2.0.0",
+    "@actions/core": "^3.0.0",
+    "@actions/exec": "^3.0.0",
+    "@actions/io": "^3.0.0",
     "class-validator": "^0.14.1",
     "js-yaml": "^4.1.0",
     "semver": "^7.6.0"

@@ -1,4 +1,4 @@
-import { registerDecorator, ValidationOptions, ValidationArguments } from 'class-validator';
+import { registerDecorator, type ValidationOptions, type ValidationArguments } from 'class-validator';
 import { valid } from 'semver';
 
 export function IsSemver(validationOptions?: ValidationOptions) {

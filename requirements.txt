@@ -1,2 +1,1 @@
-ansible==11.3.0
-distlib==0.3.9
+ansible==13.3.0

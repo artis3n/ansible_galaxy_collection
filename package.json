@@ -33,7 +33,7 @@
     "@actions/core": "^3.0.0",
     "@actions/exec": "^3.0.0",
     "@actions/io": "^3.0.0",
-    "class-validator": "^0.14.1",
+    "class-validator": "^0.15.0",
     "js-yaml": "^4.1.0",
     "semver": "^7.6.0"
   },

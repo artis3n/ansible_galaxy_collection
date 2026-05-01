@@ -46,7 +46,7 @@
     "@types/validator": "^13.11.9",
     "@vitest/coverage-v8": "^4.0.18",
     "prettier": "^3.2.5",
-    "typescript": "^5.4.3",
+    "typescript": "^6.0.0",
     "vitest": "^4.0.18"
   }
 }

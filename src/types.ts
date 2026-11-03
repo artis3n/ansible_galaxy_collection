@@ -17,7 +17,7 @@ export type GalaxyConfigFile = {
 export type CollectionInput = {
   config: GalaxyConfig;
   apiKey: string;
-  apiUrl: String;
+  apiUrl: string;
   customDir: string;
   customVersion: string;
 };

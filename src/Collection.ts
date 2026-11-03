@@ -21,18 +21,20 @@ export class Collection {
   protected readonly customDir: string;
   @IsNotEmpty()
   readonly apiKey: string;
+  readonly apiUrl: string;
   protected readonly config: GalaxyConfig;
 
   /**
    * Validation of input is handled by decorators.
    */
-  constructor({ config, apiKey, customDir, customVersion }: CollectionInput) {
+  constructor({ config, apiKey, apiUrl, customDir, customVersion }: CollectionInput) {
     this.config = config;
 
     this.namespace = config.namespace || '';
     this.name = config.name || '';
     this.version = this.applyCustomVersion(customVersion);
     this.apiKey = apiKey;
+    this.apiUrl = apiUrl;
     this.customDir = customDir;
   }
 
@@ -82,6 +84,6 @@ export class Collection {
   ): Promise<number> {
     const galaxyCommandPath = await which('ansible-galaxy', true);
     // If a custom directory is passed in, use that. Otherwise, do not specify a custom location.
-    return exec(`${galaxyCommandPath} collection publish ${this}.tar.gz --api-key=${this.apiKey}`);
+    return exec(`${galaxyCommandPath} collection publish ${this}.tar.gz --api-key=${this.apiKey} --server=${this.apiUrl}`);
   }
 }

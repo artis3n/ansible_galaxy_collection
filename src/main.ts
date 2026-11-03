@@ -14,6 +14,7 @@ import { type GalaxyConfigFile } from './types.ts';
 
 try {
   const apiKey = getInput('api_key', { required: true });
+  const apiUrl = getInput('api_url') || 'https://galaxy.ansible.com';
   const collectionLocation: string = getInput('collection_dir');
   const willBuild: boolean = (getInput('build').toLowerCase().trim() || 'true') == 'true';
   const willPublish: boolean = (getInput('publish').toLowerCase().trim() || 'true') == 'true';
@@ -26,6 +27,7 @@ try {
     collection = new Collection({
       config: galaxyConfig,
       apiKey,
+      apiUrl,
       customDir: collectionLocation,
       customVersion: maybeGalaxyVersion,
     });

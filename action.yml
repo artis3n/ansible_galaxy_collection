@@ -9,6 +9,11 @@ inputs:
 
       See https://help.github.com/en/github/automating-your-workflow-with-github-actions/virtual-environments-for-github-actions#creating-and-using-secrets-encrypted-variables.
     required: true
+  api_url:
+    description: |
+      Ansible Galaxy API URL.
+    required: false
+    default: 'https://galaxy.ansible.com'
   collection_dir:
     description: |
       The directory in which the Ansible Collection is stored. This defaults to the project root.

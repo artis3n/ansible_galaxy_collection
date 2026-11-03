@@ -27,6 +27,12 @@ An example workflow using this action can be found [here](https://github.com/art
 This should be protected as a secret in your workflow.
 See [Creating and Using Secrets Encrypted Variables](https://help.github.com/en/github/automating-your-workflow-with-github-actions/virtual-environments-for-github-actions#creating-and-using-secrets-encrypted-variables).
 
+## api_url
+
+Default: `http://galaxy.ansible.com`
+
+The URL of the Ansible Galaxy server where the collection will be published.
+
 ## collection_dir
 
 **Default**: `./`
